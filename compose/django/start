@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Apply Django migrations
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createadmin
+
+# Collect static files
+python manage.py collectstatic --noinput
+
+# Run Gunicorn server
+exec gunicorn core.wsgi:application --bind 0.0.0.0:7777

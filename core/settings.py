@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv("envs/.env"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,18 +153,34 @@ MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Django Rest API",
-    "site_header": "Django Rest API",
-    "site_brand": "Django Rest API",
-    "welcome_sign": "Django Rest API Admin",
+    "site_title": "Django Admin",
+    "site_header": "Django Admin",
+    "site_brand": "Django Admin",
+    "site_icon": "/image/logo.png",
+    "welcome_sign": "Welcome to Django Admin",
+    "topmenu_links": [
+        {"name": "Home", "url": "/", "new_window": False},
+    ],
+
     "show_sidebar": True,
     "navigation_expanded": True,
+    "hide_apps": [],
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
+        "auth.Permission": "fas fa-lock",
+        "web": "fas fa-globe",
+        "web.Home": "fas fa-home",
+        "web.About": "fas fa-info-circle",
+        "web.SiteUsers": "fas fa-users",
+        "SupportBot": "fas fa-robot",
+        "SupportBot.BotUsers": "fas fa-robot",
+        "SupportBot.TelegramGroupID": "fas fa-users",
+        "SupportBot.TelegramChannelID": "fas fa-users",
+        "SupportBot.DailyMessages": "fas fa-envelope",
     },
-    "copyright": "Django Rest API",
+    "copyright": "ShinzoFamily",
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
     "related_modal_active": False,
@@ -176,6 +192,12 @@ JAZZMIN_SETTINGS = {
         "auth.group": "vertical_tabs",
     },
     "site_logo_classes": "img-circle",
+    "login_logo": "/image/logo.png",
+    "custom_css": "/css/jazzmin.css",
+    "site_logo": "/image/logo.png",
+    "login_logo_dark": "/image/logo.png",
+    "show_ui_builder": False,
+    "language_chooser": False,
 }
 
 JAZZMIN_UI_TWEAKS = {
