@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap");
 
 body {
     font-family: "Open Sans", sans-serif;
@@ -316,12 +317,12 @@ a:focus {
 }
 
 .btn1:hover {
-    background-color: #007fa4;
+    background-color: #00bbf0;
     box-shadow: 0 0 5px #00bbf0, 0 0 25px #00bbf0, 0 0 50px #00bbf0, 0 0 200px #00bbf0;
 }
 
 .nav-link:hover {
-    background-color: #007fa4;
+    background-color: #002b64;
     box-shadow: 0 0 5px #00bbf0, 0 0 25px #00bbf0, 0 0 50px #00bbf0, 0 0 200px #00bbf0;
 }
 
@@ -627,6 +628,7 @@ a:focus {
     padding: 0 15px;
 }
 
+
 .team_section .team_container .box {
     padding: 35px 0 0 0;
     border-radius: 5px;
@@ -634,9 +636,9 @@ a:focus {
     -webkit-transition: all .1s;
     transition: all .1s;
     margin-top: 45px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#002759), to(#002b64));
     background: linear-gradient(to bottom, #002759, #002b64);
 }
+
 
 .team_section .team_container .box .img-box {
     display: -webkit-box;
