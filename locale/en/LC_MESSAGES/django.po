@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-23 14:51+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: apps/university/models/academic_hours.py:11
+#: apps/university/models/education_services.py:11
+#: apps/university/models/education_subjects.py:25
+#: apps/university/models/education_subjects.py:30
+#: apps/university/models/files.py:8 apps/university/models/home.py:10
+#: apps/university/models/news.py:11 apps/university/models/projects.py:11
+#: apps/university/models/ptik_story.py:9
+#: apps/university/models/scientific_base.py:11
+#: apps/university/models/video.py:8
+msgid "Title"
+msgstr ""
+
+#: apps/university/models/academic_hours.py:15
+#: apps/university/models/education_services.py:15
+#: apps/university/models/education_subjects.py:31
+#: apps/university/models/news.py:15 apps/university/models/projects.py:15
+#: apps/university/models/scientific_base.py:15
+msgid "Short Title"
+msgstr ""
+
+#: apps/university/models/academic_hours.py:18
+#: apps/university/models/education_services.py:18
+#: apps/university/models/education_subjects.py:32
+#: apps/university/models/faculty.py:10 apps/university/models/gallery.py:9
+#: apps/university/models/home.py:9 apps/university/models/news.py:18
+#: apps/university/models/projects.py:18
+#: apps/university/models/ptik_story.py:10
+#: apps/university/models/scientific_base.py:18
+#: apps/university/models/video.py:9
+msgid "Description"
+msgstr ""
+
+#: apps/university/models/academic_hours.py:21
+#: apps/university/models/education_services.py:21
+#: apps/university/models/education_subjects.py:33
+#: apps/university/models/news.py:21 apps/university/models/projects.py:21
+#: apps/university/models/scientific_base.py:21
+msgid "Short Description"
+msgstr ""
+
+#: apps/university/models/academic_hours.py:25
+#: apps/university/models/education_services.py:25
+#: apps/university/models/education_subjects.py:34
+#: apps/university/models/gallery.py:10 apps/university/models/home.py:18
+#: apps/university/models/news.py:25 apps/university/models/projects.py:25
+#: apps/university/models/ptik_story.py:11
+#: apps/university/models/scientific_base.py:25
+msgid "Image"
+msgstr ""
+
+#: apps/university/models/academic_hours.py:29
+#: apps/university/models/academic_hours.py:30
+msgid "Academic Hours"
+msgstr ""
+
+#: apps/university/models/education_services.py:29
+#: apps/university/models/education_services.py:30
+msgid "Education Services"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:9
+#: apps/university/models/faculty.py:9 apps/university/models/gallery.py:8
+#: apps/university/models/home.py:8
+msgid "Name"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:15
+msgid "Education Subject Category"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:16
+msgid "Education Subject Categories"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:22
+#: apps/university/models/support.py:8
+msgid "Full Name"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:23
+#: apps/university/models/faculty.py:13 apps/university/models/home.py:13
+#: apps/university/models/support.py:9
+msgid "Email"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:24
+#: apps/university/models/faculty.py:12 apps/university/models/home.py:12
+#: apps/university/models/support.py:10
+msgid "Phone"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:26
+msgid "Problem"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:27
+msgid "Category"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:35
+#: apps/university/models/video.py:10 apps/university/models/video.py:16
+msgid "Video"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:36
+#: apps/university/models/files.py:9 apps/university/models/files.py:12
+msgid "File"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:42
+msgid "Education Subject"
+msgstr ""
+
+#: apps/university/models/education_subjects.py:43
+msgid "Education Subjects"
+msgstr ""
+
+#: apps/university/models/faculty.py:11 apps/university/models/home.py:16
+msgid "Logo"
+msgstr ""
+
+#: apps/university/models/faculty.py:14 apps/university/models/home.py:14
+msgid "Address"
+msgstr ""
+
+#: apps/university/models/faculty.py:15
+msgid "Dekan"
+msgstr ""
+
+#: apps/university/models/faculty.py:16
+msgid "Dekan Photo"
+msgstr ""
+
+#: apps/university/models/faculty.py:22
+msgid "Faculty"
+msgstr ""
+
+#: apps/university/models/faculty.py:23
+msgid "Faculties"
+msgstr ""
+
+#: apps/university/models/files.py:13
+msgid "Files"
+msgstr ""
+
+#: apps/university/models/gallery.py:16 apps/university/models/gallery.py:17
+msgid "Gallery"
+msgstr ""
+
+#: apps/university/models/home.py:11
+msgid "Subtitle"
+msgstr ""
+
+#: apps/university/models/home.py:15
+msgid "Location"
+msgstr ""
+
+#: apps/university/models/home.py:17
+msgid "Icon"
+msgstr ""
+
+#: apps/university/models/home.py:19
+msgid "Instagram"
+msgstr ""
+
+#: apps/university/models/home.py:20
+msgid "Facebook"
+msgstr ""
+
+#: apps/university/models/home.py:21
+msgid "Twitter"
+msgstr ""
+
+#: apps/university/models/home.py:22
+msgid "Linkedin"
+msgstr ""
+
+#: apps/university/models/home.py:23
+msgid "Youtube"
+msgstr ""
+
+#: apps/university/models/home.py:24
+msgid "Telegram"
+msgstr ""
+
+#: apps/university/models/home.py:30 apps/university/models/home.py:31
+msgid "Home"
+msgstr ""
+
+#: apps/university/models/news.py:29 apps/university/models/news.py:30
+msgid "News"
+msgstr ""
+
+#: apps/university/models/projects.py:29 apps/university/models/projects.py:30
+msgid "Projects"
+msgstr ""
+
+#: apps/university/models/ptik_story.py:17
+msgid "PTIK Story"
+msgstr ""
+
+#: apps/university/models/ptik_story.py:18
+msgid "PTIK Stories"
+msgstr ""
+
+#: apps/university/models/scientific_base.py:29
+#: apps/university/models/scientific_base.py:30
+msgid "Scientific Base"
+msgstr ""
+
+#: apps/university/models/support.py:11
+msgid "Subject"
+msgstr ""
+
+#: apps/university/models/support.py:12
+msgid "Message"
+msgstr ""
+
+#: apps/university/models/video.py:17
+msgid "Videos"
+msgstr ""
+
+#: apps/users/models/users.py:11
+msgid "email address"
+msgstr ""
+
+#: apps/users/models/users.py:28
+msgid ""
+"The groups this user belongs to. A user will get all permissions granted to "
+"each of their groups."
+msgstr ""
+
+#: apps/users/models/users.py:31
+msgid "groups"
+msgstr ""
+
+#: apps/users/models/users.py:36
+msgid "Specific permissions for this user."
+msgstr ""
+
+#: apps/users/models/users.py:39
+msgid "user permissions"
+msgstr ""
+
+#: apps/users/models/users.py:43
+msgid "user"
+msgstr ""
+
+#: apps/users/models/users.py:44
+msgid "users"
+msgstr ""
+
+#: core/settings.py:105
+msgid "Russia"
+msgstr ""
+
+#: core/settings.py:106
+msgid "English"
+msgstr ""
+
+#: core/settings.py:107
+msgid "Uzbek"
+msgstr ""
