@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   web:
+    restart: always
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
@@ -9,10 +10,8 @@ services:
     command: /start
     volumes:
       - .:/app
-      - static_volume:/app/staticfiles
-      - media_volume:/app/media
     ports:
-      - "7777:7777"
+      - "8000:8000"
     env_file:
       - envs/.env
     depends_on:
@@ -30,37 +29,6 @@ services:
     ports:
       - "5432:5432"
 
-#  bot:
-#    build:
-#      context: .
-#      dockerfile: ./compose/django/Dockerfile
-#    image: support_bot
-#    command: python /app/Bot/main.py
-#    volumes:
-#      - .:/app
-#    env_file:
-#      - envs/.env
-#    depends_on:
-#      - db
-
-  nginx:
-    build:
-      context: .
-      dockerfile: ./compose/nginx/Dockerfile
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - web
-    volumes:
-      - static_volume:/app/staticfiles
-      - media_volume:/app/media
-    logging:
-      options:
-        max-size: '10m'
-        max-file: '3'
 
 volumes:
-  static_volume:
   postgres_data:
-  media_volume:

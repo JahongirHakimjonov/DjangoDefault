@@ -13,4 +13,4 @@ python manage.py createadmin
 python manage.py collectstatic --noinput
 
 # Run Gunicorn server
-exec gunicorn core.wsgi:application --bind 0.0.0.0:7777
+exec gunicorn core.wsgi:application --bind 0.0.0.0:8000
