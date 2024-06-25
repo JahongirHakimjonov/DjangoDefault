@@ -7,3 +7,5 @@ __pycache__/
 *.pyd
 .env
 qodana.yaml
+db.sqlite3/
+db.sqlite3
