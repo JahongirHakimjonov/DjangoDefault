@@ -18,6 +18,11 @@ class Command(BaseCommand):
 
         os.makedirs(app_directory, exist_ok=True)
 
+        init_file_path = os.path.join("apps", '__init__.py')
+
+        if not os.path.exists(init_file_path):
+            open(init_file_path, 'w').close()
+
         call_command("startapp", app_name, app_directory)
 
         apps_file_path = os.path.join(app_directory, "apps.py")
@@ -29,8 +34,19 @@ class Command(BaseCommand):
         with open(apps_file_path, "w") as file:
             file.write(filedata)
 
-        self.stdout.write(
-            self.style.SUCCESS(
-                f'Successfully created app "{app_name}" inside the apps folder and updated apps.py'
-            )
-        )
+        for file_name in ["admin.py", "models.py", "views.py", "tests.py"]:
+            os.remove(os.path.join(app_directory, file_name))
+
+        urls_file_path = os.path.join(app_directory, "urls.py")
+        with open(urls_file_path, "w") as file:
+            file.write("from django.urls import path\n\nurlpatterns = []\n")
+
+        def create_package(package_name):
+            os.makedirs(package_name, exist_ok=True)
+            with open(os.path.join(package_name, '__init__.py'), 'w') as init_file:
+                pass
+
+        for package_name in ["models", "views", "admin", "serializers", "tests"]:
+            create_package(os.path.join(app_directory, package_name))
+
+        self.stdout.write(self.style.SUCCESS(f"App {app_name} created successfully!"))
