@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from .swagger import urlpatterns as swagger_patterns
+from core.config.swagger import urlpatterns as swagger_patterns
 
 urlpatterns = [
     path("", include("apps.shared.urls")),
