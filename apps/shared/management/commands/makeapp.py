@@ -18,10 +18,10 @@ class Command(BaseCommand):
 
         os.makedirs(app_directory, exist_ok=True)
 
-        init_file_path = os.path.join("apps", '__init__.py')
+        init_file_path = os.path.join("apps", "__init__.py")
 
         if not os.path.exists(init_file_path):
-            open(init_file_path, 'w').close()
+            open(init_file_path, "w").close()
 
         call_command("startapp", app_name, app_directory)
 
@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
         def create_package(package_name):
             os.makedirs(package_name, exist_ok=True)
-            with open(os.path.join(package_name, '__init__.py'), 'w') as init_file:
+            with open(os.path.join(package_name, "__init__.py"), "w") as init_file:
                 pass
 
         for package_name in ["models", "views", "admin", "serializers", "tests"]:
