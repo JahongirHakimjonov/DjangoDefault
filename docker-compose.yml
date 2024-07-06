@@ -5,7 +5,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: ./compose/django/Dockerfile
+      dockerfile: deployments/compose/django/Dockerfile
     image: django_web
     command: /start
     volumes:
