@@ -4,4 +4,4 @@ FROM nginx:1.21-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy your custom NGINX configuration file
-COPY ./compose/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./deployments/compose/nginx/nginx.conf /etc/nginx/conf.d/default.conf
