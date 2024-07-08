@@ -1,5 +1,7 @@
 # Django Default
 
+
+
 ![banner](https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png "banner")
 
 
@@ -58,4 +60,9 @@ Subscribe to the:
 
 
 [Telegram](https://t.me/jakhangir_blog)
+
+
+<a href="https://pypi.org/project/django-default/">
+    <img src="https://i0.wp.com/securityaffairs.com/wp-content/uploads/2021/08/PyPI.png?ssl=1" width="200" height="90" alt="pypi">
+</a>
 
