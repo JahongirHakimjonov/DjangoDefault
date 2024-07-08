@@ -1,6 +1,6 @@
 # Django Default
 
-![banner](https://i.postimg.cc/D0c9wjqW/Pics-Art-24-07-08-01-10-45-321.png "banner")
+![banner](https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png "banner")
 
 
 Django Default is a Django project structure generator that simplifies the process of setting up new Django projects. It automates the cloning of a predefined Django project structure from a GitHub repository, enabling developers to start their projects with a solid foundation.
