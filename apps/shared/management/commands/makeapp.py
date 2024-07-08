@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
         def create_package(package_name):
             os.makedirs(package_name, exist_ok=True)
-            with open(os.path.join(package_name, "__init__.py"), "w") as init_file:
+            with open(os.path.join(package_name, "__init__.py"), "w"):
                 pass
 
         for package_name in ["models", "views", "admin", "serializers", "tests"]:

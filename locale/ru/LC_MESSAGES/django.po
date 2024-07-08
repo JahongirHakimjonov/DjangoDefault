@@ -185,4 +185,3 @@ msgstr "Английский"
 
 msgid "Uzbek"
 msgstr "Узбекский"
-

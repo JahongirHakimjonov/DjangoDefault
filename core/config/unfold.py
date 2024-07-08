@@ -1,4 +1,5 @@
 from django.templatetags.static import static
+
 # from django.utils.translation import gettext_lazy as _
 # from django.urls import reverse_lazy
 from . import unfold_navigation as navigation
@@ -8,8 +9,8 @@ UNFOLD = {
     "SITE_HEADER": "Django Default",
     "SITE_URL": "/",
     "SITE_ICON": {
-    "light": lambda request: static("image/logo.png"),  # light mode
-    "dark": lambda request: static("image/logo.png"),  # dark mode
+        "light": lambda request: static("image/logo.png"),  # light mode
+        "dark": lambda request: static("image/logo.png"),  # dark mode
     },
     # "SITE_LOGO": {
     # "light": lambda request: static("logo-light.svg"),  # light mode
