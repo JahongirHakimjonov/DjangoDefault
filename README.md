@@ -101,3 +101,14 @@ This document provides an overview and usage instructions for custom management 
 ## General Information
 
 These commands are designed to streamline common tasks in Django development and deployment. Ensure you have the necessary permissions and environment setup before running these commands.
+
+
+# Development
+### Pre-commit
+Before adding any source code, it is recommended to have pre-commit installed on your local computer to check for all potential issues when comitting the code.
+```bash
+pip install pre-commit
+pre-commit install
+pre-commit install --hook-type commit-msg
+pre-commit run --all-files # Check if everything is okay
+```
