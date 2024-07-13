@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+# wait for RabbitMQ server to start
+sleep 10
+
+rm -f './celerybeat.pid'
+celery -A core beat -l INFO

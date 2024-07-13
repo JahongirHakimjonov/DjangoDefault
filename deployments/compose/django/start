@@ -4,6 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+
 # Apply Django migrations
 python manage.py makemigrations
 python manage.py migrate
@@ -14,3 +15,8 @@ python manage.py collectstatic --noinput
 
 # Run Gunicorn server
 exec gunicorn core.wsgi:application --bind 0.0.0.0:8000
+
+
+## Start Celery worker and Flower
+#celery -A config worker --loglevel=info &
+#sleep 10 && celery -A config flower --loglevel=info

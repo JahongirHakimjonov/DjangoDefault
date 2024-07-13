@@ -16,6 +16,7 @@ services:
       - envs/.env
     depends_on:
       - db
+      - rabbitmq
 
   db:
     image: postgres:15-alpine
@@ -24,11 +25,78 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=django
+      - POSTGRES_DB=djangodefault
       - POSTGRES_PASSWORD=1253
     ports:
       - "5432:5432"
 
 
+#  redis:
+#    image: redis:6.2-alpine
+#    ports:
+#      - '6379:6379'
+#    volumes:
+#      - redis_data:/data
+#
+#  rabbitmq:
+#    image: rabbitmq:management
+#    container_name: rabbitmq
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=guest
+#      - RABBITMQ_DEFAULT_PASS=guest
+#    ports:
+#      - '5672:5672'
+#      - '15672:15672'
+#
+#
+#
+#  celery_worker:
+#    build:
+#      context: .
+#      dockerfile: ./deployments/compose/django/Dockerfile
+#    image: celery_worker
+#    command: /start-celeryworker
+#    volumes:
+#      - .:/app
+#    env_file:
+#      - envs/.env
+#    depends_on:
+#      - redis
+#      - rabbitmq
+#      - db
+#
+#  celery_beat:
+#    build:
+#      context: .
+#      dockerfile: ./deployments/compose/django/Dockerfile
+#    command: /start-celerybeat
+#    volumes:
+#      - .:/app
+#    env_file:
+#      - envs/.env
+#    depends_on:
+#      - redis
+#      - rabbitmq
+#      - db
+#
+#  flower:
+#    build:
+#      context: .
+#      dockerfile: ./deployments/compose/django/Dockerfile
+#    command: /start-flower
+#    volumes:
+#      - .:/app
+#    ports:
+#      - "5555:5555" # Adjusted to match Flower's default port
+#    env_file:
+#      - envs/.env
+#    depends_on:
+#      - redis
+#      - rabbitmq
+#      - db
+
+
+
 volumes:
   postgres_data:
+  redis_data:
