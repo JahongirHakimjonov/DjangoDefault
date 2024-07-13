@@ -40,6 +40,13 @@ After generating your project structure, configure it by setting up the database
 - rest_framework
 - drf_spectacular
 - drf_spectacular_sidecar
+- celery beat
+- celery worker
+- flower
+- RabbitMQ
+- Redis
+- black
+- pre-commit
 
 ## Development
 
@@ -98,15 +105,89 @@ This document provides an overview and usage instructions for custom management 
 - **Description**: Generates a new Django secret key. This is particularly useful when setting up a new project or when you need to regenerate the secret key for security reasons.
 - **Usage**: `python manage.py secret_key`
 
+# Project Dependencies and Tools
+
+This project utilizes a combination of powerful tools and technologies to manage background tasks, message queuing, and real-time monitoring. Below is an overview of the key components:
+
+## Celery
+
+Celery is an asynchronous task queue/job queue based on distributed message passing. It is focused on real-time operation but supports scheduling as well. The execution units, called tasks, are executed concurrently on one or more worker nodes using multiprocessing, Eventlet, or gevent. Celery is used in this project for handling background tasks efficiently.
+
+### Key Components:
+
+- **Celery Beat**: A scheduler for Celery. It kicks off tasks at regular intervals, which are then executed by available Celery workers. It's used for periodic tasks like cleaning up databases, sending emails, or gathering data from various sources.
+- **Celery Worker**: These are the processes that run the actual tasks. A Celery system can have multiple workers, which can be located on the same machine or across a distributed network.
+
+## RabbitMQ
+
+RabbitMQ is an open-source message broker software that originally implemented the Advanced Message Queuing Protocol (AMQP). It facilitates the efficient delivery of messages in complex routing scenarios and ensures that messages are processed only once, in the order they are sent. In this project, RabbitMQ is used as the message broker for Celery, managing the queue of tasks to be processed by the workers.
+
+## Redis
+
+Redis is an in-memory data structure store, used as a database, cache, and message broker. In this project, Redis is used in two main roles:
+- As a message broker, similar to RabbitMQ, offering support for fast, transient storage scenarios.
+- For storing the task results (Celery supports using Redis as a result backend).
+
+## Flower
+
+Flower is a web-based tool for monitoring and administrating Celery clusters. It provides detailed real-time information about task queues, workers, and tasks, with the ability to control them directly through the web interface. Flower is an essential tool for managing and troubleshooting Celery tasks and workers in this project.
+
+---
+
+To set up these components for your development environment, refer to the respective official documentation for installation and configuration guidelines.
+
 ## General Information
 
 These commands are designed to streamline common tasks in Django development and deployment. Ensure you have the necessary permissions and environment setup before running these commands.
+
+
+## Pre-commit for Code Quality Assurance
+
+Pre-commit is an essential tool in modern development workflows, ensuring that code committed to the repository adheres to defined quality standards. It automates the process of checking code for common issues before it is committed, helping to maintain a clean and error-free codebase.
+
+### Features and Benefits:
+
+- **Automated Code Review**: Runs a series of checks on code before it is committed, catching issues early in the development cycle.
+- **Customizable Hooks**: Supports a wide range of hooks for different languages and frameworks, including Python and JavaScript, making it versatile for projects with diverse tech stacks.
+- **Easy Integration**: Can be easily integrated into existing projects with minimal setup, enhancing the development process without significant overhead.
+
+### Setting Up Pre-commit in Your Project:
+
+1. **Installation**: Install pre-commit using pip:
+   ```bash
+   pip install pre-commit
+   ```
+2. **Configuration**: Create a `.pre-commit-config.yaml` file in your project root directory. Define the hooks you want to use, as shown in the project's current configuration.
+3. **Install Git Hook Scripts**: Run the following command to set up pre-commit with your git hooks:
+   ```bash
+   pre-commit install
+   ```
+   This step ensures that pre-commit runs automatically on every commit attempt.
+
+4. **Optional: Commit Message Hooks**: For projects requiring commit message standards, pre-commit can enforce this through commit message hooks:
+   ```bash
+   pre-commit install --hook-type commit-msg
+   ```
+
+5. **Manual Run**: To manually run pre-commit on all files in the project, use:
+   ```bash
+   pre-commit run --all-files
+   ```
+   This is useful for initial setup or periodic checks across the entire codebase.
+
+### Example Configuration:
+
+The project's `.pre-commit-config.yaml` includes hooks for checking JSON, TOML, and ensuring no merge conflicts, among others. It also utilizes `ruff` for fast Python linting and formatting, demonstrating the flexibility and power of pre-commit in maintaining code quality.
+
+For detailed information and advanced configurations, refer to the [official pre-commit documentation](https://pre-commit.com/).
+
 
 
 # Development
 ### Pre-commit
 Before adding any source code, it is recommended to have pre-commit installed on your local computer to check for all potential issues when comitting the code.
 ```bash
+black . # Format the code
 pip install pre-commit
 pre-commit install
 pre-commit install --hook-type commit-msg
