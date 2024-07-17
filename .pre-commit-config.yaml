@@ -7,7 +7,6 @@ repos:
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-toml
-      - id: end-of-file-fixer
         exclude: CHANGELOG.md
       - id: trailing-whitespace
         exclude: CHANGELOG.md
