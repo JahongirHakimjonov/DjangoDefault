@@ -23,7 +23,7 @@ pip install django-default
 To generate a new Django project structure, execute the following command:
 
 ```bash
-shinzo
+bankai
 ```
 
 This command clones the predefined Django project structure into your current working directory.
