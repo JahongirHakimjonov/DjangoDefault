@@ -9,20 +9,20 @@ ENV PYTHONUNBUFFERED=1 \
 # Install Flower for Celery monitoring
 RUN pip install flower
 
-## Copy and set permissions for celery worker start script
-#COPY ./deployments/compose/django/celery/worker/start /start-celeryworker
-#RUN sed -i 's/\r$//g' /start-celeryworker && \
-#    chmod +x /start-celeryworker
-#
-## Copy and set permissions for celery beat start script
-#COPY ./deployments/compose/django/celery/beat/start /start-celerybeat
-#RUN sed -i 's/\r$//g' /start-celerybeat && \
-#    chmod +x /start-celerybeat
-#
-## Copy and set permissions for flower start script
-#COPY ./deployments/compose/django/celery/flower/start /start-flower
-#RUN sed -i 's/\r$//g' /start-flower && \
-#    chmod +x /start-flower
+# Copy and set permissions for celery worker start script
+COPY ./deployments/compose/django/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker && \
+    chmod +x /start-celeryworker
+
+# Copy and set permissions for celery beat start script
+COPY ./deployments/compose/django/celery/beat/start /start-celerybeat
+RUN sed -i 's/\r$//g' /start-celerybeat && \
+    chmod +x /start-celerybeat
+
+# Copy and set permissions for flower start script
+COPY ./deployments/compose/django/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower && \
+    chmod +x /start-flower
 
 # Update and install necessary packages
 RUN apt update && apt upgrade -y && apt install git -y

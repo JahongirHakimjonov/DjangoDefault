@@ -6,7 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 
 from core.config import *  # noqa
 
-load_dotenv(find_dotenv("envs/.env"))
+load_dotenv(find_dotenv(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
