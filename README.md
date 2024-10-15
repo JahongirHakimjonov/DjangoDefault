@@ -77,6 +77,16 @@ Please contact Jahongir Hakimjonov with any questions or concerns regarding this
     <img src="https://i0.wp.com/securityaffairs.com/wp-content/uploads/2021/08/PyPI.png?ssl=1" width="200" height="90" alt="pypi">
 </a>
 
+# Donate
+- [Buy Me Coffee](https://buymeacoffee.com/ja_khan_gir)
+
+- [Tirikchilik](https://tirikchilik.uz/ja_khan_gir)
+
+
+<a href="https://buymeacoffee.com/ja_khan_gir">
+    <img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="200" height="90" alt="pypi">
+</a>
+
 # Management Commands Documentation
 
 This document provides an overview and usage instructions for custom management commands included in the Django project.
