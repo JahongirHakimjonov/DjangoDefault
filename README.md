@@ -84,7 +84,7 @@ Please contact Jahongir Hakimjonov with any questions or concerns regarding this
 
 
 <a href="https://buymeacoffee.com/ja_khan_gir">
-    <img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="200" height="90" alt="pypi">
+    <img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="200" height="200" alt="pypi">
 </a>
 
 # Management Commands Documentation
