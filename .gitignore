@@ -10,3 +10,6 @@ qodana.yaml
 db.sqlite3/
 db.sqlite3
 .venv/
+backups/
+backups/*
+backups
