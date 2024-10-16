@@ -1,5 +1,6 @@
 FROM python:3.10-slim-buster
 
+
 # Set environment variables to ensure UTF-8 encoding
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -25,7 +26,7 @@ ENV PYTHONUNBUFFERED=1 \
 #    chmod +x /start-flower
 
 # Update and install necessary packages
-RUN apt update && apt upgrade -y && apt install git -y && apt install gettext -y
+RUN apt update && apt upgrade -y && apt install git -y && apt install -y cron
 
 WORKDIR /app
 COPY . /app
