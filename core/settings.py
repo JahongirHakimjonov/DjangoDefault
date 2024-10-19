@@ -1,4 +1,4 @@
-import os
+import os  # noqa
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -56,23 +56,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": os.getenv("POSTGRES_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("POSTGRES_DB"),
+#         "USER": os.getenv("POSTGRES_USER"),
+#         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+#         "HOST": os.getenv("POSTGRES_HOST"),
+#         "PORT": os.getenv("POSTGRES_PORT"),
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -112,11 +112,6 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
 STATIC_URL = "static/"
 STATICFILES_DIRS = [str(BASE_DIR.joinpath("assets/static"))]
 STATIC_ROOT = str(BASE_DIR.joinpath("assets/staticfiles"))
-
-# STATICFILES_FINDERS = [
-#     "django.contrib.staticfiles.finders.FileSystemFinder",
-#     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-# ]
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = str(BASE_DIR.joinpath("assets/media"))

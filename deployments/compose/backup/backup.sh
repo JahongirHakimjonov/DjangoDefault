@@ -1,14 +1,20 @@
 #!/bin/bash
 
-# Hozirgi vaqtni olish (backup fayl nomi uchun)
+sleep 10
+
+# Get the current timestamp (for backup file name)
 TIMESTAMP=$(date +"%F_%H-%M-%S")
 
-# Backup saqlanadigan katalogni yaratish
+# Create the backup directory
 BACKUP_DIR="/backups/$TIMESTAMP"
 mkdir -p "$BACKUP_DIR"
 
-# PostgreSQL'dan backup olish
-PGPASSWORD=$POSTGRES_PASSWORD pg_dump -U $POSTGRES_USER -d $POSTGRES_DB -F c > "$BACKUP_DIR/my_database.dump"
+# Set PostgreSQL host and port
+PGHOST=db
+PGPORT=5432
 
-# Eski backuplarni 7 kundan keyin o'chirish
+# Take a backup of the PostgreSQL database
+PGPASSWORD=$POSTGRES_PASSWORD pg_dump -h $PGHOST -p $PGPORT -U $POSTGRES_USER -d $POSTGRES_DB -F c > "$BACKUP_DIR/my_database.dump"
+
+# Delete backups older than 7 days
 find /backups/* -mtime +7 -exec rm -rf {} \;

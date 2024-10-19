@@ -29,6 +29,20 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
 
+#  backup:
+#    build:
+#      context: .
+#      dockerfile: deployments/compose/backup/Dockerfile
+#    image: backup
+#    command: /start-backup
+#    restart: always
+#    volumes:
+#      - /backups:/backups
+#    env_file:
+#      - .env
+#    depends_on:
+#      - db
+
 
 #  redis:
 #    restart: always

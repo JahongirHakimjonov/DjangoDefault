@@ -1,15 +1,14 @@
 FROM postgres:15-alpine
 
-# Cron o'rnatish
-RUN apt-get update && apt-get install -y cron
+# Install dcron and postgresql-client
+RUN apk update && apk upgrade && apk add --no-cache dcron postgresql-client
 
-# Backup skriptni konteynerga qo'shish
-COPY deployments/compose/backup/backup.sh /usr/local/bin/backup.sh
-RUN chmod +x /usr/local/bin/backup.sh
+# Add the backup script to the container
+COPY deployments/compose/backup/backup.sh /start-backup
+RUN chmod +x /start-backup
 
-# Crontab qo'shish
-RUN echo "* * * * * /usr/local/bin/backup.sh" > /etc/cron.d/db-backup
-RUN crontab /etc/cron.d/db-backup
+# Add crontab
+RUN echo "* * * * * /start-backup" > /etc/crontabs/root
 
-# Cron va PostgreSQL serverni birgalikda ishga tushirish
-CMD cron && tail -f /dev/null
+# Start cron and PostgreSQL server together
+CMD crond -f && tail -f /dev/null
