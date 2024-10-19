@@ -9,15 +9,15 @@ UNFOLD = {
     "SITE_HEADER": "Django Default",
     "SITE_URL": "/",
     "SITE_ICON": {
-        "light": lambda request: static("images/logo.jpg"),
-        "dark": lambda request: static("images/logo.jpg"),
+        "light": lambda request: static("images/django-logo.png"),
+        "dark": lambda request: static("images/django-logo.png"),
     },
     "SITE_FAVICONS": [
         {
             "rel": "icon",
             "sizes": "32x32",
             "type": "image/svg+xml",
-            "href": lambda request: static("images/favicon.ico"),
+            "href": lambda request: static("images/django-logo.png"),
         },
     ],
     "SITE_SYMBOL": "speed",
