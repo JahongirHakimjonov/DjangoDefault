@@ -2,21 +2,63 @@
 
 {% block body %}
     <!DOCTYPE html>
-    <html>
-
+    <html lang="en">
     <head>
-        <!-- Basic -->
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <!-- Mobile Metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <!-- Site Metas -->
-        <meta name="keywords" content=""/>
-        <meta name="description" content=""/>
-        <meta name="author" content=""/>
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects. It automates the cloning of a predefined Django project structure from a GitHub repository, enabling developers to start their projects with a solid foundation.">
+        <meta name="keywords" content="Django Default is a Django project structure generator by @ja_khan_gir">
+        <meta name="author" content="https://pypi.org/project/django-default/">
+        <meta name="robots" content="index, follow">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-        <title>Django Template</title>
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="A Django project structure generator by @ja_khan_gir">
+        <meta property="og:description"
+              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://pypi.org/project/django-default/">
+        <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
+        <meta property="og:site_name" content="https://pypi.org/project/django-default/">
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Django Default">
+        <meta name="twitter:description"
+              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects.">
+        <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
+        <meta name="twitter:site" content="@ja_khan_gir">
+        <meta name="twitter:creator" content="@ja_khan_gir">
+
+        <!-- Canonical Link -->
+        <link rel="canonical" href="https://pypi.org/project/django-default/">
+
+        <!-- Schema Markup -->
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "Django Default",
+              "url": "https://pypi.org/project/django-default/",
+              "logo": "https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png",
+              "sameAs": [
+                "https://t.me/ja_khan_gir",
+                "https://www.twitter.com/ja_khan_gir",
+                "https://www.instagram.com/ja_khan_gir",
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+998-33-007-85-87",
+                "contactType": "customer service"
+              }
+            }
+        </script>
+        
+
+        <title>Django Default</title>
 
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
@@ -54,9 +96,9 @@
         <header class="header_section">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="/">
             <span>
-              Django Template
+              Django Default
             </span>
                     </a>
 
@@ -104,13 +146,13 @@
                             <div class="col-md-6 ">
                                 <div class="detail-box">
                                     <h1>
-                                        Django Template
+                                        Django Default
                                     </h1>
                                     <p>
                                         Hello, guys! This is a Django Template. You can use this template for your
                                     </p>
                                     <div class="btn-box">
-                                        <a href="admin/" class="btn1">
+                                        <a href="{% url 'admin:index' %}" class="btn1">
                                             SignIn
                                         </a>
                                     </div>
@@ -208,7 +250,7 @@
                             <a class="" href="https://t.me/ja_khan_gir">
                                 Telegram
                             </a>
-                            <a class="" href="http://instagram.com/ja_khan_gir">
+                            <a class="" href="https://www.instagram.com/ja_khan_gir">
                                 Instagram
                             </a>
                             <a class="" href="https://jahongirhakimjonov.github.io/portfolio/">
@@ -217,18 +259,6 @@
                         </div>
                     </div>
                 </div>
-                {#                <div class="col-md-6 col-lg-3 info_col ">#}
-                {#                    <h4>#}
-                {#                        Subscribe#}
-                {#                    </h4>#}
-                {#                    <form method="post">#}
-                {#                        {% csrf_token %}#}
-                {#                        {{ form.useremail }}#}
-                {#                        <button type="submit">#}
-                {#                            Yuborish#}
-                {#                        </button>#}
-                {#                    </form>#}
-                {#                </div>#}
             </div>
         </div>
     </section>
@@ -240,7 +270,7 @@
         <div class="container">
             <p>
                 &copy; <span id="displayYear"></span> All Rights Reserved By
-                <a href="/assets/static">Django Template</a>
+                <a href="https://pypi.org/project/django-default/">Django Default</a>
             </p>
         </div>
     </section>
