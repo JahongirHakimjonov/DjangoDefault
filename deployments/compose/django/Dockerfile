@@ -26,7 +26,7 @@ ENV PYTHONUNBUFFERED=1 \
 #    chmod +x /start-flower
 
 # Update and install necessary packages
-RUN apt update && apt upgrade -y && apt install git -y && apt install -y cron
+RUN apt update && apt upgrade -y && apt install git -y && apt install -y gettext
 
 WORKDIR /app
 COPY . /app
