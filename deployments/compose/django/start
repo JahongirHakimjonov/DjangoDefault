@@ -13,10 +13,11 @@ python manage.py createadmin
 # Collect static files
 python manage.py collectstatic --noinput
 
-# Run Gunicorn server
-exec gunicorn core.wsgi:application --bind 0.0.0.0:8000
+# Run Gunicorn server with increased timeout
+exec gunicorn core.wsgi:application --bind 0.0.0.0:8000 --timeout 120
+
+# Run Uvicorn server using ASGI
+#exec uvicorn core.asgi:application --host 0.0.0.0 --port 8000 --reload
 
 
-## Start Celery worker and Flower
-#celery -A config worker --loglevel=info &
-#sleep 10 && celery -A config flower --loglevel=info
+
