@@ -5,6 +5,10 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.db
+*.sqlite3
+*.sql
+*.dump
 .env
 qodana.yaml
 db.sqlite3/
@@ -13,3 +17,7 @@ db.sqlite3
 backups/
 backups/*
 backups
+assets/media/
+assets/media/*
+assets/staticfiles/*
+assets/staticfiles/
