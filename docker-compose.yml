@@ -21,28 +21,26 @@ services:
   db:
     image: postgres:15-alpine
     restart: always
-    environment:
-      POSTGRES_DB: djangodefault
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: '1253'
+    env_file:
+      - .env
     volumes:
       - pg_data:/var/lib/postgresql/data
 
-#  backup:
-#    build:
-#      context: .
-#      dockerfile: deployments/compose/backup/Dockerfile
-#    image: backup
-#    command: /start-backup
-#    restart: always
-#    volumes:
-#      - /backups:/backups
-#    env_file:
-#      - .env
-#    depends_on:
-#      - db
-
-
+  #  backup:
+  #    build:
+  #      context: .
+  #      dockerfile: deployments/compose/backup/Dockerfile
+  #    image: backup
+  #    command: /start-backup
+  #    restart: always
+  #    volumes:
+  #      - /backups:/backups
+  #    env_file:
+  #      - .env
+  #    depends_on:
+  #      - db
+#
+#
 #  redis:
 #    restart: always
 #    image: redis
@@ -57,6 +55,7 @@ services:
 #      - RABBITMQ_DEFAULT_PASS=guest
 #    ports:
 #      - ${RABBITMQ_PORT:-15672}:15672
+#      - ${AMQP_PORT:-5672}:5672
 #    volumes:
 #      - rabbitmq:/var/lib/rabbitmq
 #
@@ -66,7 +65,6 @@ services:
 #    build:
 #      context: .
 #      dockerfile: ./deployments/compose/django/Dockerfile
-#    image: celery_worker
 #    command: /start-celeryworker
 #    restart: always
 #    volumes:
@@ -114,4 +112,6 @@ services:
 
 volumes:
   pg_data:
+    driver: local
 #  rabbitmq:
+#    driver: local

@@ -112,17 +112,17 @@
                         <ul class="navbar-nav  ">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/"> <i class="fa fa-user"
+                                <a class="nav-link" href="{% url 'admin:index' %}"> <i class="fa fa-user"
                                                                       aria-hidden="true"></i>
                                     Admin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="api/schema/swagger-ui/"> <i class="fas fa-cogs"
+                                <a class="nav-link" href="{% url 'swagger-ui' %}"> <i class="fas fa-cogs"
                                                                                       aria-hidden="true"></i>
                                     Swagger</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="api/schema/redoc/"> <i class="fas fa-book"
+                                <a class="nav-link" href="{% url 'redoc' %}"> <i class="fas fa-book"
                                                                                  aria-hidden="true"></i> Redoc</a>
                             </li>
                             <li class="nav-item">
