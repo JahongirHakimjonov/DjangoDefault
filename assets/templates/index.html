@@ -1,296 +1,101 @@
 {% load static %}
 
 {% block body %}
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description"
-              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects. It automates the cloning of a predefined Django project structure from a GitHub repository, enabling developers to start their projects with a solid foundation.">
-        <meta name="keywords" content="Django Default is a Django project structure generator by @ja_khan_gir">
-        <meta name="author" content="https://pypi.org/project/django-default/">
-        <meta name="robots" content="index, follow">
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Default</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Explore more features and documentation of Django Default, the project structure generator for Django.">
+    <meta name="keywords" content="Django Default, Django documentation, Django features, Django project setup">
+    <meta name="author" content="Jahongir Hakimjonov">
+    <meta name="robots" content="index, follow">
 
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="A Django project structure generator by @ja_khan_gir">
-        <meta property="og:description"
-              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://pypi.org/project/django-default/">
-        <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
-        <meta property="og:site_name" content="https://pypi.org/project/django-default/">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-        <!-- Twitter Card Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Django Default">
-        <meta name="twitter:description"
-              content="Django Default is a Django project structure generator that simplifies the process of setting up new Django projects.">
-        <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
-        <meta name="twitter:site" content="@ja_khan_gir">
-        <meta name="twitter:creator" content="@ja_khan_gir">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Django Default Features">
+    <meta property="og:description" content="Learn more about the features of Django Default.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pypi.org/project/django-default/">
+    <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
 
-        <!-- Canonical Link -->
-        <link rel="canonical" href="https://pypi.org/project/django-default/">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Django Default Features">
+    <meta name="twitter:description" content="Dive into the features of Django Default and explore its possibilities.">
+    <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
 
-        <!-- Schema Markup -->
-        <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Django Default",
-              "url": "https://pypi.org/project/django-default/",
-              "logo": "https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png",
-              "sameAs": [
-                "https://t.me/ja_khan_gir",
-                "https://www.twitter.com/ja_khan_gir",
-                "https://www.instagram.com/ja_khan_gir",
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+998-33-007-85-87",
-                "contactType": "customer service"
-              }
-            }
-        </script>
-        
-
-        <title>Django Default</title>
-
-        <!-- bootstrap core css -->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
-
-        <!-- fonts style -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-        <!--owl slider stylesheet -->
-        <link rel="stylesheet" type="text/css"
-              href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-
-        <!-- font awesome style -->
-        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
-
-        <!-- Custom styles for this template -->
-        <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-        <!-- responsive style -->
-        <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    </head>
-
-    <body>
-
-    <div class="hero_area">
-
-        <div class="hero_bg_box">
-            <div class="bg_img_box">
-                <img src="{% static 'images/hero-bg.png' %}" alt="">
-            </div>
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://pypi.org/project/django-default/">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar">
+        <div class="logo">
+            Django Default<span class="version"></span>
         </div>
+        <!-- Menu Toggle Button for Mobile -->
+        <button class="menu-toggle" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            <li><a href="{% url 'swagger-ui' %}">Swagger</a></li>
+            <li><a href="{% url 'redoc' %}">Redoc</a></li>
+            <li><a href="rosetta/">Rosetta</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <!-- header section strats -->
-        <header class="header_section">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="/">
-            <span>
-              Django Default
-            </span>
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class=""> </span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav  ">
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'admin:index' %}"> <i class="fa fa-user"
-                                                                      aria-hidden="true"></i>
-                                    Admin</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'swagger-ui' %}"> <i class="fas fa-cogs"
-                                                                                      aria-hidden="true"></i>
-                                    Swagger</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'redoc' %}"> <i class="fas fa-book"
-                                                                                 aria-hidden="true"></i> Redoc</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="rosetta/"> <i class="fas fa-globe" aria-hidden="true"></i>
-                                    Rosetta</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!-- end header section -->
-        <!-- slider section -->
-        <section class="slider_section ">
-            <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    {#                    <div class="carousel-item active">#}
-                    <div class="container ">
-                        <div class="row">
-                            <div class="col-md-6 ">
-                                <div class="detail-box">
-                                    <h1>
-                                        Django Default
-                                    </h1>
-                                    <p>
-                                        Hello, guys! This is a Django Template. You can use this template for your
-                                    </p>
-                                    <div class="btn-box">
-                                        <a href="{% url 'admin:index' %}" class="btn1">
-                                            SignIn
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="img-box">
-                                    <img src="{% static 'images/slider-img.png' %}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end slider section -->
+<main class="main-content">
+    <h1>The Powerful <span class="highlight">Django Framework</span></h1>
+    <p>
+        Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It
+        takes care of much of the hassle of web development, allowing you to focus on writing your app instead of
+        reinventing the wheel. With Django, you can build secure, scalable, and maintainable web applications quickly
+        and efficiently.
+    </p>
+    <div class="buttons">
+        <a href="{% url 'admin:index' %}" class="btn btn-primary">Sign In</a>
     </div>
+</main>
 
+<footer class="footer">
+    <div class="social-links">
+        <a href="https://t.me/ja_khan_gir" target="_blank" class="social-icon">
+            <img src="{% static 'images/telegram-icon.svg' %}" alt="Telegram">
+        </a>
+        <a href="https://github.com/JahongirHakimjonov" target="_blank" class="social-icon">
+            <img src="{% static 'images/github-icon.svg' %}" alt="GitHub">
+        </a>
+        <a href="https://www.instagram.com/ja_khan_gir/" target="_blank" class="social-icon">
+            <img src="{% static 'images/instagram-icon.svg' %}" alt="Instagram">
+        </a>
+        <a href="https://mystories.uz" target="_blank" class="social-icon">
+            <img src="{% static 'images/web-icon.svg' %}" alt="WebSite">
+        </a>
+    </div>
+    <p>© 2024 Django Default. All rights reserved.</p>
+</footer>
 
-    <!-- info section -->
+<script>
+    // JavaScript to toggle mobile navigation menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.nav-links').classList.toggle('show');
+        this.classList.toggle('active');
+    });
+</script>
 
-    <section class="info_section layout_padding2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 info_col">
-                    <div class="info_contact">
-                        <h4>
-                            Contacts
-                        </h4>
-                        <div class="contact_link_box">
-                            <a href="">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span>
-                  Archa mahalla, Orqa ko'cha 1-uy
-                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <span>
-                  +998 33 007 85 87
-                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span>
-                  jahongir_kh@tiiame.uz
-                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="info_social">
-                        <a href="https://www.facebook.com/ja_khan_gir">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://twitter.com/ja_khan_gir">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/jahongir-hakimjonov/">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://instagram.com/ja_khan_gir">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://github.com/JahongirHakimjonov">
-                            <i class="fa fa-github" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://t.me/ja_khan_gir">
-                            <i class="fa fa-telegram" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 info_col">
-                    <div class="info_detail">
-                        <h4>
-                            Info
-                        </h4>
-                        <p>
-                            Hello, guys! This is a Django Template. You can use this template for your
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-2 mx-auto info_col">
-                    <div class="info_link_box">
-                        <h4>
-                            Links
-                        </h4>
-                        <div class="info_links">
-                            <a class="active"
-                               href="https://www.canva.com/design/DAGDHdnRcII/oMWsmW8fRmSDq_asvn2Kiw/edit?utm_content=DAGDHdnRcII&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
-                                Resume
-                            </a>
-                            <a class="" href="https://github.com/JahongirHakimjonov">
-                                GitHub
-                            </a>
-                            <a class="" href="https://t.me/ja_khan_gir">
-                                Telegram
-                            </a>
-                            <a class="" href="https://www.instagram.com/ja_khan_gir">
-                                Instagram
-                            </a>
-                            <a class="" href="https://jahongirhakimjonov.github.io/portfolio/">
-                                PORTFOLIO
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- end info section -->
-
-    <!-- footer section -->
-    <section class="footer_section">
-        <div class="container">
-            <p>
-                &copy; <span id="displayYear"></span> All Rights Reserved By
-                <a href="https://pypi.org/project/django-default/">Django Default</a>
-            </p>
-        </div>
-    </section>
-    <!-- footer section -->
-
-    <!-- jQery -->
-    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-    <!-- popper js -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <!-- bootstrap js -->
-    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-    <!-- owl slider -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-    </script>
-    <!-- custom js -->
-    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
-
-    </body>
-
-    </html>
+</body>
+</html>
 {% endblock %}

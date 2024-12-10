@@ -1,27 +1,33 @@
-name: Deploy Django Application to Server
+name: Deploy Django Application to Server for Production
 
 on:
   push:
     branches:
-      - main  # Bu yerda kodni qaysi branch'dan push qilganda deploy ishga tushishini ko'rsatasiz
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Repositoryni GitHub'dan olish
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Serverga SSH orqali ulanish
+      - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            set -e
             cd ${{ secrets.DEPLOY_PATH }}
-            git pull origin main
-            docker compose up --build -d
-            docker image prune -f
-            echo "Deploy jarayoni muvaffaqiyatli yakunlandi!"
+            echo "Pulling latest changes from main branch..."
+            git fetch --all
+            git reset --hard origin/main
+            echo "Building and restarting Docker containers..."
+            docker compose pull
+            docker compose up -d --build
+            echo "Cleaning up unused Docker images..."
+            docker image prune -af
+            echo "Deployment completed successfully!"

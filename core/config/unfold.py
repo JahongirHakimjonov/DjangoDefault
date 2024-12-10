@@ -9,22 +9,23 @@ UNFOLD = {
     "SITE_HEADER": "Django Default",
     "SITE_URL": "/",
     "SITE_ICON": {
-        "light": lambda request: static("images/django-logo.png"),
-        "dark": lambda request: static("images/django-logo.png"),
+        "light": lambda request: static("images/django-logo.webp"),
+        "dark": lambda request: static("images/django-logo.webp"),
     },
     "SITE_FAVICONS": [
         {
             "rel": "icon",
             "sizes": "32x32",
-            "type": "image/svg+xml",
-            "href": lambda request: static("images/django-logo.png"),
+            "type": "image/icon",
+            "href": lambda request: static("images/favicon.ico"),
         },
     ],
     "SITE_SYMBOL": "speed",
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
+    "SHOW_LANGUAGES": True,
     "LOGIN": {
-        "image": lambda request: static("images/login.jpg"),
+        "image": lambda request: static("images/login.webp"),
     },
     "STYLES": [
         lambda request: static("css/tailwind.css"),

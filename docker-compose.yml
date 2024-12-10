@@ -23,44 +23,35 @@ services:
     restart: always
     env_file:
       - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - pg_data:/var/lib/postgresql/data
 
-  #  backup:
-  #    build:
-  #      context: .
-  #      dockerfile: deployments/compose/backup/Dockerfile
-  #    image: backup
-  #    command: /start-backup
-  #    restart: always
-  #    volumes:
-  #      - /backups:/backups
-  #    env_file:
-  #      - .env
-  #    depends_on:
-  #      - db
-#
-#
+
 #  redis:
+#    image: redis:latest
 #    restart: always
-#    image: redis
-#
+
+
 #  rabbitmq:
 #    image: rabbitmq:management
 #    env_file:
 #      - .env
 #    restart: always
 #    environment:
-#      - RABBITMQ_DEFAULT_USER=guest
-#      - RABBITMQ_DEFAULT_PASS=guest
+#      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+#      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
 #    ports:
 #      - ${RABBITMQ_PORT:-15672}:15672
 #      - ${AMQP_PORT:-5672}:5672
 #    volumes:
 #      - rabbitmq:/var/lib/rabbitmq
-#
-#
-#
+
+
+
 #  celery_worker:
 #    build:
 #      context: .
@@ -75,7 +66,8 @@ services:
 #      - redis
 #      - rabbitmq
 #      - db
-#
+
+
 #  celery_beat:
 #    build:
 #      context: .
@@ -90,7 +82,8 @@ services:
 #      - redis
 #      - rabbitmq
 #      - db
-#
+
+
 #  flower:
 #    env_file:
 #      - .env

@@ -21,7 +21,7 @@ else:
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
 
-INSTALLED_APPS = THIRD_PARTY_APPS + DEFAULT_APPS + PROJECT_APPS  # noqa
+INSTALLED_APPS = [*THIRD_PARTY_APPS, *DEFAULT_APPS, *PROJECT_APPS]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
