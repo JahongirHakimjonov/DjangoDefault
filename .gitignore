@@ -21,3 +21,4 @@ assets/media/
 assets/media/*
 assets/staticfiles/*
 assets/staticfiles/
+assets/logs/*

@@ -47,3 +47,22 @@ PAGES = [
         ],
     },
 ]
+
+TABS = [
+    {
+        "models": [
+            "auth.user",
+            "auth.group",
+        ],
+        "items": [
+            {
+                "title": _("Foydalanuvchilar"),
+                "link": reverse_lazy("admin:auth_user_changelist"),
+            },
+            {
+                "title": _("Guruhlar"),
+                "link": reverse_lazy("admin:auth_group_changelist"),
+            },
+        ],
+    },
+]
