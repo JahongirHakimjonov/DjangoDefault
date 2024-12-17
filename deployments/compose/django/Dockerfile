@@ -12,7 +12,7 @@ RUN apt update && \
     apt install -y gettext && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
-# Install Flower and other Python dependencies
+# Install other Python dependencies
 RUN pip install --upgrade pip gunicorn uvicorn
 
 # Copy scripts and set permissions
