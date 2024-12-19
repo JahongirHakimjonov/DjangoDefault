@@ -8,4 +8,4 @@ echo "Waiting for RabbitMQ server to start..."
 sleep 10
 
 echo "Starting Celery worker..."
-celery -A core worker --loglevel=info --uid=nobody
+celery -A core worker --loglevel=info
