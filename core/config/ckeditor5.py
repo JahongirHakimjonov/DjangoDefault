@@ -5,7 +5,22 @@ customColorPalette = [
     {"color": "hsl(262, 52%, 47%)", "label": "Deep Purple"},
     {"color": "hsl(231, 48%, 48%)", "label": "Indigo"},
     {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
+    {"color": "hsl(120, 60%, 70%)", "label": "Light Green"},
+    {"color": "hsl(60, 70%, 50%)", "label": "Yellow"},
+    {"color": "hsl(30, 100%, 40%)", "label": "Orange"},
+    {"color": "hsl(0, 0%, 20%)", "label": "Dark Grey"},
 ]
+
+# Define predefined font sizes
+customFontSizes = {
+    "options": [
+        "tiny",  # predefined size options
+        "small",
+        "default",
+        "big",
+        "huge",
+    ]
+}
 
 CKEDITOR_5_CONFIGS = {
     "default": {
@@ -19,7 +34,35 @@ CKEDITOR_5_CONFIGS = {
             "numberedList",
             "blockQuote",
             "imageUpload",
+            "mediaEmbed",  # Media Embed to support iframe embedding
+            "codeBlock",
+            "sourceEditing",
+            "fileUpload",
+            "|",
+            "alignment",
+            "fontSize",
+            "fontColor",
+            "fontBackgroundColor",
+            "|",
+            "undo",
+            "redo",
         ],
+        "extraAllowedContent": "iframe[*]",  # Allow all iframe attributes
+        "allowedContent": True,  # Allow all content types
+        "alignment": {
+            "options": ["left", "center", "right", "justify"],
+        },
+        "fontSize": customFontSizes,
+        "fontColor": {
+            "colors": customColorPalette,
+        },
+        "fontBackgroundColor": {
+            "colors": customColorPalette,
+        },
+        # Add iframe embedding functionality
+        "mediaEmbed": {
+            "previewsInData": True,
+        },
     },
     "extends": {
         "blockToolbar": [
@@ -63,10 +106,22 @@ CKEDITOR_5_CONFIGS = {
             "fontFamily",
             "fontColor",
             "fontBackgroundColor",
-            "mediaEmbed",
+            "mediaEmbed",  # Enable Media Embed in toolbar for iframes
             "removeFormat",
             "insertTable",
+            "|",
+            "alignment",
         ],
+        "alignment": {
+            "options": ["left", "center", "right", "justify"],
+        },
+        "fontSize": customFontSizes,
+        "fontColor": {
+            "colors": customColorPalette,
+        },
+        "fontBackgroundColor": {
+            "colors": customColorPalette,
+        },
         "image": {
             "toolbar": [
                 "imageTextAlternative",
@@ -76,6 +131,9 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:alignCenter",
                 "imageStyle:side",
                 "|",
+                "resizeImage:50",
+                "resizeImage:75",
+                "resizeImage:original",
             ],
             "styles": [
                 "full",
@@ -138,3 +196,10 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+
+CKEDITOR_UPLOAD_PATH = "uploads/"  # Path to upload images
+CKEDITOR_IMAGE_BACKEND = "pillow"  # Use Pillow as image processing backend
+CKEDITOR_IMAGE_QUALITY = 100  # Image quality
+CKEDITOR_RESTRICT_BY_USER = True  # Restrict images by user
+CKEDITOR_BROWSE_SHOW_DIRS = True  # Show directories in file browser
+CKEDITOR_RESTRICT_BY_DATE = True  # Restrict images by date

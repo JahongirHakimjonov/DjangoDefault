@@ -1,5 +1,4 @@
 THIRD_PARTY_APPS = [
-    # "jazzmin",
     "unfold",
     "unfold.contrib.filters",
     "unfold.contrib.forms",
