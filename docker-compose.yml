@@ -1,4 +1,6 @@
-version: '3.8'
+networks:
+  app_network:
+    driver: bridge
 
 services:
   web:
@@ -14,12 +16,14 @@ services:
     ports:
       - ${PORT:-8001}:8000
     depends_on:
-      - db
+      - pgbouncer
 #      - rabbitmq
 #      - redis
+    networks:
+      - app_network
 
   db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     restart: always
     env_file:
       - .env
@@ -29,12 +33,45 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network
 
+  pgbouncer:
+    image: pgbouncer/pgbouncer:latest
+    restart: always
+    environment:
+      - DATABASES_AUTH_USER=${POSTGRES_USER}
+      - DATABASES_CLIENT_SIDE_DBNAME=${POSTGRES_DB}
+      - DATABASES_USER=${POSTGRES_USER}
+      - DATABASES_PASSWORD=${POSTGRES_PASSWORD}
+      - DATABASES_DBNAME=${POSTGRES_DB}
+      - DATABASES_HOST=${POSTGRES_HOST}
+      - DATABASES_PORT=${POSTGRES_PORT:-5432}
+      - PGBOUNCER_DEFAULT_POOL_SIZE=100
+      - PGBOUNCER_MAX_CLIENT_CONN=10000
+      - PGBOUNCER_LISTEN_PORT=${POSTGRES_BOUNCER_PORT:-6432}
+      - PGBOUNCER_LISTEN_ADDR=*
+      - PGBOUNCER_LOGFILE=/var/log/pgbouncer/pgbouncer.log
+    volumes:
+      - pgbouncer_data:/etc/pgbouncer
+    ports:
+      - ${POSTGRES_BOUNCER_PORT:-6432}:6432
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app_network
 
 #  redis:
 #    image: redis:latest
 #    restart: always
-
+#    networks:
+#      - app_network
 
 #  rabbitmq:
 #    image: rabbitmq:management
@@ -49,8 +86,8 @@ services:
 #      - ${AMQP_PORT:-5672}:5672
 #    volumes:
 #      - rabbitmq:/var/lib/rabbitmq
-
-
+#    networks:
+#      - app_network
 
 #  celery_worker:
 #    build:
@@ -65,8 +102,9 @@ services:
 #    depends_on:
 #      - redis
 #      - rabbitmq
-#      - db
-
+#      - pgbouncer
+#    networks:
+#      - app_network
 
 #  celery_beat:
 #    build:
@@ -81,30 +119,31 @@ services:
 #    depends_on:
 #      - redis
 #      - rabbitmq
-#      - db
+#      - pgbouncer
+#    networks:
+#      - app_network
 
-
-#  flower:
-#    env_file:
-#      - .env
-#    build:
-#      context: .
-#      dockerfile: ./deployments/compose/django/Dockerfile
-#    command: /start-flower
-#    restart: always
-#    volumes:
-#      - .:/app
-#    ports:
-#      - ${CELERY_FLOWER:-5555}:5555
-#    depends_on:
-#      - redis
-#      - rabbitmq
-#      - db
-
-
+#  celery-flower:
+#      env_file:
+#        - .env
+#      build:
+#        context: .
+#        dockerfile: ./deployments/compose/django/Dockerfile
+#      command: /start-flower
+#      restart: always
+#      volumes:
+#        - .:/app
+#      ports:
+#        - ${CELERY_FLOWER:-5555}:5555
+#      depends_on:
+#        - redis
+#        - rabbitmq
+#        - pgbouncer
 
 volumes:
   pg_data:
+    driver: local
+  pgbouncer_data:
     driver: local
 #  rabbitmq:
 #    driver: local

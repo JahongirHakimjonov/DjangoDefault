@@ -17,6 +17,7 @@ REST_FRAMEWORK = {
         "user": "1000/day",
         "story": "1000/day",
     },
+    "EXCEPTION_HANDLER": "apps.shared.exceptions.custom_exception_handler",
 }
 
 SPECTACULAR_SETTINGS = {

@@ -13,7 +13,7 @@ RUN apt update && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 # Install other Python dependencies
-RUN pip install --upgrade pip gunicorn uvicorn
+RUN pip install --upgrade pip gunicorn uvicorn[standard]
 
 # Copy scripts and set permissions
 #COPY ./deployments/compose/django/celery/worker/start /start-celeryworker
