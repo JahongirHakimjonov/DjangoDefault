@@ -1,7 +1,3 @@
-networks:
-  app_network:
-    driver: bridge
-
 services:
   web:
     restart: always
@@ -19,8 +15,6 @@ services:
       - pgbouncer
 #      - rabbitmq
 #      - redis
-    networks:
-      - app_network
 
   db:
     image: postgres:16-alpine
@@ -38,8 +32,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - app_network
 
   pgbouncer:
     image: pgbouncer/pgbouncer:latest
@@ -64,14 +56,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - app_network
 
 #  redis:
 #    image: redis:latest
 #    restart: always
-#    networks:
-#      - app_network
 
 #  rabbitmq:
 #    image: rabbitmq:management
@@ -86,8 +74,6 @@ services:
 #      - ${AMQP_PORT:-5672}:5672
 #    volumes:
 #      - rabbitmq:/var/lib/rabbitmq
-#    networks:
-#      - app_network
 
 #  celery_worker:
 #    build:
@@ -103,8 +89,6 @@ services:
 #      - redis
 #      - rabbitmq
 #      - pgbouncer
-#    networks:
-#      - app_network
 
 #  celery_beat:
 #    build:
@@ -120,8 +104,6 @@ services:
 #      - redis
 #      - rabbitmq
 #      - pgbouncer
-#    networks:
-#      - app_network
 
 #  celery-flower:
 #      env_file:
