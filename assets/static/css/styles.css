@@ -298,3 +298,16 @@ p {
         gap: 15px;
     }
 }
+
+/* Particles.js Background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #1e293b, #111827, #334155);
+    background-size: 300% 300%;
+    animation: gradient-animation 8s ease infinite;
+}

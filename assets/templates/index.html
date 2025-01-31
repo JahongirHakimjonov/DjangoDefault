@@ -1,101 +1,110 @@
 {% load static %}
 
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Default</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="Explore more features and documentation of Django Default, the project structure generator for Django.">
-    <meta name="keywords" content="Django Default, Django documentation, Django features, Django project setup">
-    <meta name="author" content="Jahongir Hakimjonov">
-    <meta name="robots" content="index, follow">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Django Default</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="Explore more features and documentation of Django Default, the project structure generator for Django.">
+        <meta name="keywords" content="Django Default, Django documentation, Django features, Django project setup">
+        <meta name="author" content="Jahongir Hakimjonov">
+        <meta name="robots" content="index, follow">
 
-    <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <!-- Favicon -->
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Django Default Features">
-    <meta property="og:description" content="Learn more about the features of Django Default.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pypi.org/project/django-default/">
-    <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Django Default Features">
+        <meta property="og:description" content="Learn more about the features of Django Default.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://pypi.org/project/django-default/">
+        <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Django Default Features">
-    <meta name="twitter:description" content="Dive into the features of Django Default and explore its possibilities.">
-    <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Django Default Features">
+        <meta name="twitter:description"
+              content="Dive into the features of Django Default and explore its possibilities.">
+        <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
 
-    <!-- Canonical Link -->
-    <link rel="canonical" href="https://pypi.org/project/django-default/">
-</head>
-<body>
-<header class="header">
-    <nav class="navbar">
-        <div class="logo">
-            Django Default<span class="version"></span>
+        <!-- Canonical Link -->
+        <link rel="canonical" href="https://pypi.org/project/django-default/">
+    </head>
+    <body>
+    <!-- Particles.js Background -->
+    <div id="particles-js"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                Django Default<span class="version"></span>
+            </div>
+            <!-- Menu Toggle Button for Mobile -->
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                <li><a href="{% url 'swagger-ui' %}">Swagger</a></li>
+                <li><a href="{% url 'redoc' %}">Redoc</a></li>
+                <li><a href="rosetta/">Rosetta</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1>The Powerful <span class="highlight">Django Framework</span></h1>
+        <p>
+            Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
+            It
+            takes care of much of the hassle of web development, allowing you to focus on writing your app instead of
+            reinventing the wheel. With Django, you can build secure, scalable, and maintainable web applications
+            quickly
+            and efficiently.
+        </p>
+        <div class="buttons">
+            <a href="{% url 'admin:index' %}" class="btn btn-primary">Sign In</a>
         </div>
-        <!-- Menu Toggle Button for Mobile -->
-        <button class="menu-toggle" aria-label="Toggle Navigation">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="{% url 'admin:index' %}">Admin</a></li>
-            <li><a href="{% url 'swagger-ui' %}">Swagger</a></li>
-            <li><a href="{% url 'redoc' %}">Redoc</a></li>
-            <li><a href="rosetta/">Rosetta</a></li>
-        </ul>
-    </nav>
-</header>
+    </main>
 
-<main class="main-content">
-    <h1>The Powerful <span class="highlight">Django Framework</span></h1>
-    <p>
-        Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It
-        takes care of much of the hassle of web development, allowing you to focus on writing your app instead of
-        reinventing the wheel. With Django, you can build secure, scalable, and maintainable web applications quickly
-        and efficiently.
-    </p>
-    <div class="buttons">
-        <a href="{% url 'admin:index' %}" class="btn btn-primary">Sign In</a>
-    </div>
-</main>
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://t.me/ja_khan_gir" target="_blank" class="social-icon">
+                <img src="{% static 'images/telegram-icon.svg' %}" alt="Telegram">
+            </a>
+            <a href="https://github.com/JahongirHakimjonov" target="_blank" class="social-icon">
+                <img src="{% static 'images/github-icon.svg' %}" alt="GitHub">
+            </a>
+            <a href="https://www.instagram.com/ja_khan_gir/" target="_blank" class="social-icon">
+                <img src="{% static 'images/instagram-icon.svg' %}" alt="Instagram">
+            </a>
+            <a href="https://mystories.uz" target="_blank" class="social-icon">
+                <img src="{% static 'images/web-icon.svg' %}" alt="WebSite">
+            </a>
+        </div>
+        <p>© 2024 Django Default. All rights reserved.</p>
+    </footer>
 
-<footer class="footer">
-    <div class="social-links">
-        <a href="https://t.me/ja_khan_gir" target="_blank" class="social-icon">
-            <img src="{% static 'images/telegram-icon.svg' %}" alt="Telegram">
-        </a>
-        <a href="https://github.com/JahongirHakimjonov" target="_blank" class="social-icon">
-            <img src="{% static 'images/github-icon.svg' %}" alt="GitHub">
-        </a>
-        <a href="https://www.instagram.com/ja_khan_gir/" target="_blank" class="social-icon">
-            <img src="{% static 'images/instagram-icon.svg' %}" alt="Instagram">
-        </a>
-        <a href="https://mystories.uz" target="_blank" class="social-icon">
-            <img src="{% static 'images/web-icon.svg' %}" alt="WebSite">
-        </a>
-    </div>
-    <p>© 2024 Django Default. All rights reserved.</p>
-</footer>
+    <script>
+        // JavaScript to toggle mobile navigation menu
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('.nav-links').classList.toggle('show');
+            this.classList.toggle('active');
+        });
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-<script>
-    // JavaScript to toggle mobile navigation menu
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-        document.querySelector('.nav-links').classList.toggle('show');
-        this.classList.toggle('active');
-    });
-</script>
 
-</body>
-</html>
+    </body>
+    </html>
 {% endblock %}
