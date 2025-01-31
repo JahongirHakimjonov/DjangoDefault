@@ -46,7 +46,15 @@ class Command(BaseCommand):
             with open(os.path.join(package_name, "__init__.py"), "w"):
                 pass
 
+        init_code = """
+        import importlib\nimport os\n\ncurrent_dir = os.path.dirname(__file__)\n\nfor filename in os.listdir(current_dir):\n\tif filename.endswith(".py") and filename != "__init__.py":\n\t\tmodule_name = f"{__name__}.{filename[:-3]}"\n\t\timportlib.import_module(module_name)
+        """
+
         for package_name in ["models", "views", "admin", "serializers", "tests"]:
             create_package(os.path.join(app_directory, package_name))
+            with open(
+                    os.path.join(app_directory, package_name, "__init__.py"), "w"
+            ) as file:
+                file.write(init_code.strip())
 
         self.stdout.write(self.style.SUCCESS(f"App {app_name} created successfully!"))
