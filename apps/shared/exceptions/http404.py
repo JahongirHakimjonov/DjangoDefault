@@ -1,8 +1,9 @@
-from rest_framework.exceptions import APIException
+from rest_framework import status
+from rest_framework.exceptions import APIException, ValidationError
 
 
 class Http404Exception(APIException):
-    status_code = 404
+    status_code = status.HTTP_404_NOT_FOUND
     default_code = "not_found"
 
     def __init__(self, object_name="Object", pk=None):
@@ -12,8 +13,8 @@ class Http404Exception(APIException):
         }
 
 
-def get_object_or_404(object_class, pk):
+def get_object_or_404(object_class, pk, *args, **kwargs):
     try:
-        return object_class.objects.get(pk=pk)
-    except (object_class.DoesNotExist, ValueError, TypeError):
+        return object_class.objects.get(pk=pk, *args, **kwargs)
+    except (object_class.DoesNotExist, ValueError, TypeError, ValidationError):
         raise Http404Exception(object_class.__name__, pk)
