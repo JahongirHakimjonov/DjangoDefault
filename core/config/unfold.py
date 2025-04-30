@@ -32,6 +32,7 @@ UNFOLD = {
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
     "SHOW_LANGUAGES": True,
+    "SHOW_BACK_BUTTON": True,
     "ENVIRONMENT": "core.config.unfold.environment_callback",
     "DASHBOARD_CALLBACK": "apps.shared.views.dashboard.dashboard_callback",
     "LOGIN": {
