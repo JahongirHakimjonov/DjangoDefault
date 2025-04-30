@@ -203,3 +203,13 @@ pre-commit install
 pre-commit install --hook-type commit-msg
 pre-commit run --all-files # Check if everything is okay
 ```
+
+## Star History
+
+<a href="https://www.star-history.com/#JahongirHakimjonov/DjangoDefault&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date" />
+ </picture>
+</a>
