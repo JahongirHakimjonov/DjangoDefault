@@ -22,3 +22,4 @@ assets/media/*
 assets/staticfiles/*
 assets/staticfiles/
 assets/logs/*
+celerybeat-schedule
