@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Apply Django migrations
+uv run python manage.py makemigrations
+uv run python manage.py migrate
+
+# Collect static files
+uv run python manage.py collectstatic --noinput
+
+# Run Gunicorn server using WSGI
+#exec uv run gunicorn core.wsgi:application --bind 0.0.0.0:8000 --timeout 120
+
+# Run Uvicorn server using ASGI (production: remove --reload)
+exec uv run uvicorn core.asgi:application --host 0.0.0.0 --port 8000 --reload

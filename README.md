@@ -15,7 +15,7 @@ Django Default is a Django project structure generator that simplifies the proce
 Install Django Default using pip:
 
 ```bash
-pip install django-default
+pip install backend-default
 ```
 
 ## Usage

@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-04 12:22+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: apps/shared/views/dashboard.py:43 assets/templates/admin/index.html:8
+msgid "Dashboard"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:44
+msgid "Analytics"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:45
+msgid "Settings"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:48
+msgid "All"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:50
+msgid "New"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:160
+msgid "Last week revenue"
+msgstr ""
+
+#: apps/shared/views/dashboard.py:178
+msgid "Last week expenses"
+msgstr ""
+
+#: assets/templates/admin/base_site.html:3 assets/templates/admin/index.html:8
+msgid "Django site admin"
+msgstr ""
+
+#: assets/templates/admin/base_site.html:6 assets/templates/admin/index.html:18
+msgid "Django administration"
+msgstr ""
+
+#: assets/templates/admin/index.html:35
+msgid "Last 7 days"
+msgstr ""
+
+#: assets/templates/admin/index.html:51
+msgid "Product performance in last 28 days"
+msgstr ""
+
+#: assets/templates/admin/index.html:56
+msgid "The most trending products in last 2 weeks"
+msgstr ""
+
+#: assets/templates/admin/index.html:62
+#, python-format
+msgid ""
+"\n"
+"                            Total revenue between <strong class=\"font-"
+"semibold text-font-important-light dark:text-font-important-dark dark:text-"
+"white\">1 - 31 October</strong>. Increase <span class=\"text-green-700 font-"
+"semibold dark:text-green-400\">+3.14%%</span> comparing to previous month "
+"<strong class=\"font-semibold text-font-important-light dark:text-font-"
+"important-dark dark:text-white\">1 - 30 September</strong>.\n"
+"                        "
+msgstr ""
+
+#: assets/templates/admin/index.html:83
+msgid "Current system health"
+msgstr ""
+
+#: core/config/unfold.py:10
+msgid "Development"
+msgstr ""
+
+#: core/config/unfold.py:12
+msgid "Production"
+msgstr ""
+
+#: core/config/unfold_navigation.py:21
+msgid "Bosh sahifa"
+msgstr ""
+
+#: core/config/unfold_navigation.py:29 core/config/unfold_navigation.py:40
+#: core/config/unfold_navigation.py:59
+msgid "Foydalanuvchilar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:32 core/config/unfold_navigation.py:63
+msgid "Guruhlar"
+msgstr ""
+
+#: core/settings.py:101
+msgid "Uzbek"
+msgstr ""
+
+#: core/settings.py:102
+msgid "Russia"
+msgstr ""
+
+#: core/settings.py:103
+msgid "English"
+msgstr ""

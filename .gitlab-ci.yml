@@ -1,0 +1,85 @@
+variables:
+  PYTHON_VERSION: 3.11
+  UV_VERSION: 0.7.2
+  IMAGE_PYTHON: python:${PYTHON_VERSION}-slim
+  IMAGE_UV: ghcr.io/astral-sh/uv:${UV_VERSION}-python${PYTHON_VERSION}-bookworm-slim
+  UV_LINK_MODE: copy
+  ENV: ci
+  POSTGRES_DB: test
+  POSTGRES_USER: test
+  POSTGRES_PASSWORD: test
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+stages:
+  - lint
+  - typecheck
+  - test
+  - build
+
+
+.uv_job: &uv_job
+  image: $IMAGE_UV
+  interruptible: true
+  allow_failure: true
+  cache:
+    - key:
+        files:
+          - uv.lock
+      paths:
+        - $UV_CACHE_DIR
+  variables:
+    GIT_STRATEGY: clone
+  before_script:
+    - export PATH="${PATH}:/root/.local/bin"
+    - uv tool install go-task-bin
+
+ruff:
+  <<: *uv_job
+  stage: lint
+  needs: []
+  script:
+    - RUNNER="uv run" task lint
+
+mypy:
+  <<: *uv_job
+  stage: typecheck
+  needs: []
+  script:
+    - RUNNER="uv run" task typecheck
+
+pytest:
+  <<: *uv_job
+  stage: test
+  needs: []
+  services:
+    - postgres
+  script:
+    - RUNNER="uv run" task test-ci
+
+build-image:
+  stage: build
+  image: docker
+  needs: []
+  script:
+    - echo "Installing uv ${UV_VERSION}"
+    - apk add --update curl && rm -rf /var/cache/apk/*
+    - curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh
+    - source $HOME/.local/bin/env
+    - export LATEST_TAG=$(uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version)
+    - echo "Publishing version ${LATEST_TAG}"
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH || true
+    - docker build . --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA $CI_REGISTRY_IMAGE:$LATEST_TAG
+    - docker push $CI_REGISTRY_IMAGE:$LATEST_TAG
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      when: never
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      when: manual
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
