@@ -14,17 +14,21 @@ ENV UV_LINK_MODE=copy \
 
 WORKDIR /app
 
-# install dependencies with uv
+# Create a standard environment inside the project (uv installs dependencies there by default)
 RUN uv venv /app/.venv
 COPY ./pyproject.toml ./uv.lock ./
-RUN uv sync --no-dev --frozen --no-install-project --group docker
+RUN uv sync --no-dev --frozen --no-install-project --group docker \
+    && mv /app/.venv /opt/venv
 
 FROM python:${PYTHON_VERSION} AS app
 
 WORKDIR /app
 
-ENV PYTHONBUFFERED=1
-ENV PYTHONPATH=$PYTHONPATH:/app/src PATH=/app/.venv/bin:$PATH
+# Specify environment variables and PATH to the transferred environment
+ENV PYTHONBUFFERED=1 \
+    PYTHONPATH=$PYTHONPATH:/app \
+    VIRTUAL_ENV=/opt/venv \
+    PATH=/opt/venv/bin:$PATH
 
 # Copy and set permissions for celery worker start script
 COPY ./deployments/compose/backend/celery/worker/start /start-celeryworker
@@ -51,7 +55,8 @@ COPY ./deployments/compose/backend/start /start
 RUN sed -i 's/\r$//g' /start && \
     chmod +x /start
 
-COPY --from=builder /app/.venv .venv
+# Copy the transferred environment
+COPY --from=builder /opt/venv /opt/venv
 COPY ./pyproject.toml ./uv.lock ./
 COPY src/. /app/
 

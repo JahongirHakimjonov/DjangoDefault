@@ -51,10 +51,12 @@ typecheck = [
     "mypy",
     "types-PyYAML",
     "types-requests",
+    "django-stubs",
 ]
 docker = [
     "uvloop==0.21.0",
     "httptools==0.6.4",
+    "uvicorn[standard]==0.37.0",  # добавлено для установки внутри контейнера
 ]
 
 [tool.uv]
