@@ -544,7 +544,6 @@ dev = [
 ]
 docker = [
     { name = "httptools" },
-    { name = "uvicorn", extra = ["standard"] },
     { name = "uvloop" },
 ]
 lint = [
@@ -598,7 +597,6 @@ dev = [
 ]
 docker = [
     { name = "httptools", specifier = "==0.6.4" },
-    { name = "uvicorn", extras = ["standard"], specifier = "==0.37.0" },
     { name = "uvloop", specifier = "==0.21.0" },
 ]
 lint = [{ name = "ruff" }]

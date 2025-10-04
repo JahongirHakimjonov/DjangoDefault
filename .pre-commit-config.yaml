@@ -20,8 +20,8 @@ repos:
         entry: task typecheck
         language: system
         pass_filenames: false
-      - id: test
-        name: Run tests
-        entry: task test
-        language: system
-        pass_filenames: false
+#      - id: test
+#        name: Run tests
+#        entry: task test
+#        language: system
+#        pass_filenames: false

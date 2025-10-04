@@ -17,27 +17,6 @@ tasks:
       ENV: local
     cmds:
       - "uv sync"
-      - "docker compose up -d --wait postgres"
-      - "{{.RUNNER}} alembic upgrade head"
-      - "docker compose down"
-
-  run:
-    desc: Run the application locally for development
-    env:
-      ENV: local
-    cmds:
-      - "docker compose up -d --wait postgres || true"
-      - "{{.RUNNER}} alembic upgrade head"
-      - "{{.RUNNER}} fastapi dev src/dev.py"
-
-  upgrade-db:
-    desc: Initialize local database
-    env:
-      ENV: local
-    cmds:
-      - "docker compose up -d --wait postgres"
-      - "{{.RUNNER}} alembic upgrade head"
-      - "docker compose down"
 
   lint:
     desc: Lint python source files
@@ -92,3 +71,4 @@ tasks:
       - task: deptry
       - task: typecheck
       - task: testcov
+      - task: pre-commit

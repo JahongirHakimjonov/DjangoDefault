@@ -23,4 +23,5 @@ assets/staticfiles/*
 assets/staticfiles/
 assets/logs/*
 celerybeat-schedule
+*/celerybeat-schedule
 *.egg-info

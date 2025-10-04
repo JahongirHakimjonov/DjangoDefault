@@ -2,210 +2,313 @@
 
 ![banner](https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png "banner")
 
-Django Default is a Django project structure generator that simplifies the process of setting up new Django projects. It automates the cloning of a predefined Django project structure from a GitHub repository, enabling developers to start their projects with a solid foundation.
-
-## Features
-
-- Automates the cloning of a Django project structure.
-- Customizable to fit specific project needs.
-- Streamlines the initial setup process for Django projects.
-
-## Installation
-
-Install Django Default using pip:
-
-```bash
-pip install backend-default
-```
-
-## Usage
-
-To generate a new Django project structure, execute the following command:
-
-```bash
-bankai
-```
-
-This command clones the predefined Django project structure into your current working directory.
-
-## Configuration
-
-After generating your project structure, configure it by setting up the database and adjusting the settings in `settings.py` to match your environment. Ensure to include the third-party apps listed in `core/config/apps.py`:
-
-- jazzmin
-- modeltranslation
-- django_ckeditor_5
-- corsheaders
-- rosetta
-- rest_framework
-- drf_spectacular
-- drf_spectacular_sidecar
-- celery beat
-- celery worker
-- flower
-- RabbitMQ
-- Redis
-- black
-- pre-commit
-
-## Development
-
-To contribute to Django Default, set up a development environment by cloning the project and installing its dependencies. Run tests to ensure your changes don't break existing functionality and follow the project's contribution guidelines when submitting pull requests.
-
-## API Documentation
-
-If your project uses Django REST Framework, use `drf_spectacular` to auto-generate API documentation. Document your API endpoints, including information on request methods, parameters, and example responses.
-
-## License
-
-Django Default is released under the MIT License. See the LICENSE file in the project repository for more information.
-
-## Acknowledgments
-
-- Thanks to all contributors who have helped to improve Django Default.
-- Special thanks to Jahongir Hakimjonov for creating and maintaining this project.
-
-## Contact
-
-Please contact Jahongir Hakimjonov with any questions or concerns regarding this project.
-
-- [GitHub](https://github.com/JahongirHakimjonov)
-- [Instagram](https://www.instagram.com/ja_kahn_gir/)
-- [Telegram](https://t.me/jakhangir_blog)
-
-<a href="https://pypi.org/project/django-default/">
-    <img src="https://i0.wp.com/securityaffairs.com/wp-content/uploads/2021/08/PyPI.png?ssl=1" width="200" height="90" alt="pypi">
-</a>
-
-# Donate
-- [Buy Me Coffee](https://buymeacoffee.com/ja_khan_gir)
-
-- [Tirikchilik](https://tirikchilik.uz/ja_khan_gir)
-
-
-<a href="https://buymeacoffee.com/ja_khan_gir">
-    <img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="200" height="200" alt="pypi">
-</a>
-
-# Management Commands Documentation
-
-This document provides an overview and usage instructions for custom management commands included in the Django project.
-
-## Commands
-
-### createadmin
-
-- **Description**: Creates superuser accounts with predefined credentials. Useful for quickly setting up admin users during development.
-- **Usage**: `python manage.py createadmin`
-
-### makeapp
-
-- **Description**: Automates the creation of a new Django app within the `apps` directory. It also modifies the app's `apps.py` to correctly reference the app's location and removes unnecessary files.
-- **Usage**: `python manage.py makeapp <app_name>`
-  - `<app_name>`: The name of the app you want to create.
-
-### nginx
-
-- **Description**: Generates a new nginx configuration file based on user input for domain name, project name, and project port. The command simplifies the process of preparing nginx for new projects.
-- **Usage**: `python manage.py nginx`
-  - Follow the prompts to enter the domain name, project name, and project port.
-
-### secret_key
-
-- **Description**: Generates a new Django secret key. This is particularly useful when setting up a new project or when you need to regenerate the secret key for security reasons.
-- **Usage**: `python manage.py secret_key`
-
-# Project Dependencies and Tools
-
-This project utilizes a combination of powerful tools and technologies to manage background tasks, message queuing, and real-time monitoring. Below is an overview of the key components:
-
-## Celery
-
-Celery is an asynchronous task queue/job queue based on distributed message passing. It is focused on real-time operation but supports scheduling as well. The execution units, called tasks, are executed concurrently on one or more worker nodes using multiprocessing, Eventlet, or gevent. Celery is used in this project for handling background tasks efficiently.
-
-### Key Components:
-
-- **Celery Beat**: A scheduler for Celery. It kicks off tasks at regular intervals, which are then executed by available Celery workers. It's used for periodic tasks like cleaning up databases, sending emails, or gathering data from various sources.
-- **Celery Worker**: These are the processes that run the actual tasks. A Celery system can have multiple workers, which can be located on the same machine or across a distributed network.
-
-## RabbitMQ
-
-RabbitMQ is an open-source message broker software that originally implemented the Advanced Message Queuing Protocol (AMQP). It facilitates the efficient delivery of messages in complex routing scenarios and ensures that messages are processed only once, in the order they are sent. In this project, RabbitMQ is used as the message broker for Celery, managing the queue of tasks to be processed by the workers.
-
-## Redis
-
-Redis is an in-memory data structure store, used as a database, cache, and message broker. In this project, Redis is used in two main roles:
-- As a message broker, similar to RabbitMQ, offering support for fast, transient storage scenarios.
-- For storing the task results (Celery supports using Redis as a result backend).
-
-## Flower
-
-Flower is a web-based tool for monitoring and administrating Celery clusters. It provides detailed real-time information about task queues, workers, and tasks, with the ability to control them directly through the web interface. Flower is an essential tool for managing and troubleshooting Celery tasks and workers in this project.
+> Opinionated стартовый шаблон Django 5.2 с современным стеком: DRF + SimpleJWT, Unfold admin, многоязычие (modeltranslation), CKEditor 5, Redis cache, Celery, Swagger / Redoc (drf-spectacular), PostgreSQL, Docker, Taskfile, ruff, mypy, pytest.
+>
+> English summary: Ready-to-use Django 5.2 boilerplate with REST, JWT auth, multilingual setup, async tasks, rich admin & tooling.
 
 ---
+## Содержание
+1. Функционал
+2. Архитектура и структура каталогов
+3. Стек технологий
+4. Быстрый старт (локально / Docker)
+5. Переменные окружения
+6. Управление зависимостями (uv)
+7. Management-команды
+8. API документация (drf-spectacular)
+9. Аутентификация (SimpleJWT)
+10. Многоязычность (i18n & modeltranslation)
+11. Админ-панель (Unfold)
+12. Редактор (django-ckeditor-5)
+13. Кеш и Redis
+14. Фоновая обработка задач (Celery + Flower, RabbitMQ / Redis)
+15. Качество кода (ruff, mypy, deptry, pre-commit)
+16. Тестирование (pytest + Taskfile)
+17. Логи и мониторинг
+18. Docker / Продакшен рекомендации
+19. Обновление / Расширение
+20. Donate & Контакты
 
-To set up these components for your development environment, refer to the respective official documentation for installation and configuration guidelines.
+---
+## 1. Функционал
+- Шаблон с разделением на `core` и прикладные приложения в `apps/`.
+- Кастомная модель пользователя `users.User`.
+- DRF c JWT-аутентификацией (SimpleJWT) и схемами OpenAPI (drf-spectacular + sidecar UI).
+- Многоязычие (en / uz / ru) + локали в `assets/locale`.
+- Админ-панель на базе Unfold с доп. интеграциями (filters, forms, import_export, guardian, simple_history).
+- CKEditor 5 для богатого текста.
+- Redis cache + (опционально) Celery брокер/бэкенд (Redis или RabbitMQ).
+- Celery Worker / Beat / Flower (готовы в docker-compose закомментированы).
+- Docker окружение с PostgreSQL 16.
+- Taskfile автоматизирует lint / format / typecheck / tests / coverage.
+- Управление зависимостями через `uv` (быстрее pip + lock-файл).
+- Набор кастомных management-команд: `createadmin`, `makeapp`, `nginx`, `secret_key`.
+- Подготовлено для CI (форматирование, типы, тесты, покрытие).
 
-## General Information
-
-These commands are designed to streamline common tasks in Django development and deployment. Ensure you have the necessary permissions and environment setup before running these commands.
-
-
-## Pre-commit for Code Quality Assurance
-
-Pre-commit is an essential tool in modern development workflows, ensuring that code committed to the repository adheres to defined quality standards. It automates the process of checking code for common issues before it is committed, helping to maintain a clean and error-free codebase.
-
-### Features and Benefits:
-
-- **Automated Code Review**: Runs a series of checks on code before it is committed, catching issues early in the development cycle.
-- **Customizable Hooks**: Supports a wide range of hooks for different languages and frameworks, including Python and JavaScript, making it versatile for projects with diverse tech stacks.
-- **Easy Integration**: Can be easily integrated into existing projects with minimal setup, enhancing the development process without significant overhead.
-
-### Setting Up Pre-commit in Your Project:
-
-1. **Installation**: Install pre-commit using pip:
-   ```bash
-   pip install pre-commit
-   ```
-2. **Configuration**: Create a `.pre-commit-config.yaml` file in your project root directory. Define the hooks you want to use, as shown in the project's current configuration.
-3. **Install Git Hook Scripts**: Run the following command to set up pre-commit with your git hooks:
-   ```bash
-   pre-commit install
-   ```
-   This step ensures that pre-commit runs automatically on every commit attempt.
-
-4. **Optional: Commit Message Hooks**: For projects requiring commit message standards, pre-commit can enforce this through commit message hooks:
-   ```bash
-   pre-commit install --hook-type commit-msg
-   ```
-
-5. **Manual Run**: To manually run pre-commit on all files in the project, use:
-   ```bash
-   pre-commit run --all-files
-   ```
-   This is useful for initial setup or periodic checks across the entire codebase.
-
-### Example Configuration:
-
-The project's `.pre-commit-config.yaml` includes hooks for checking JSON, TOML, and ensuring no merge conflicts, among others. It also utilizes `ruff` for fast Python linting and formatting, demonstrating the flexibility and power of pre-commit in maintaining code quality.
-
-For detailed information and advanced configurations, refer to the [official pre-commit documentation](https://pre-commit.com/).
-
-
-
-# Development
-### Pre-commit
-Before adding any source code, it is recommended to have pre-commit installed on your local computer to check for all potential issues when comitting the code.
-```bash
-black . # Format the code
-pip install pre-commit
-pre-commit install
-pre-commit install --hook-type commit-msg
-pre-commit run --all-files # Check if everything is okay
+---
+## 2. Архитектура / Структура
+```
+src/
+  core/                # Django settings, celery init, конфиги (jwt, cache, swagger ...)
+  apps/
+    shared/            # Общие утилиты/базовые классы
+    users/             # Кастомная модель пользователя и связанная логика
+assets/
+  static/              # Исходные статические файлы
+  staticfiles/         # Собранные статики (collectstatic)
+  locale/              # Файлы переводов (.po/.mo)
+deployments/compose/   # Dockerfile + скрипты запуска
+Taskfile.yml           # Автоматизация команд
+pyproject.toml         # Зависимости и конфигурации инструментов
 ```
 
-## Star History
+---
+## 3. Стек технологий
+- Django 5.2
+- DRF, SimpleJWT
+- drf-spectacular (+ sidecar swagger/redoc UI)
+- Unfold admin + интеграции
+- modeltranslation (полевая трансляция моделей)
+- cors-headers, rosetta (удобный интерфейс переводов)
+- CKEditor 5
+- Celery + (Redis / RabbitMQ)
+- Redis cache (django-redis)
+- PostgreSQL
+- uvicorn / gunicorn (продакшен ASGI/WSGI)
+- ruff, mypy, deptry, pytest, coverage
+- Taskfile (кросс-платформенная автоматизация)
 
+---
+## 4. Быстрый старт
+### 4.1 Вариант A: Локально (uv)
+```bash
+# Установите uv (если нет)
+pip install uv
+
+# Установка зависимостей
+uv sync
+
+# Создайте .env (см. раздел Переменные окружения)
+cp .env.example .env  # если добавите пример
+
+# Применить миграции и создать суперпользователя
+uv run python src/manage.py migrate
+uv run python src/manage.py createsuperuser
+
+# Запуск dev-сервера
+uv run python src/manage.py runserver 0.0.0.0:8000
+```
+
+### 4.2 Вариант B: Docker
+```bash
+# Запуск только веб + postgres
+docker compose up -d --build
+
+# Логи
+docker compose logs -f web
+
+# Применить миграции (если не в entrypoint)
+docker compose exec web python manage.py migrate
+
+# Создать админа
+docker compose exec web python manage.py createadmin
+```
+
+### 4.3 Включение фоновых сервисов (Celery / Redis / RabbitMQ / Flower)
+В `docker-compose.yml` раскомментируйте нужные блоки: `redis`, `rabbitmq`, `celery_worker`, `celery_beat`, `celery_flower`. Затем:
+```bash
+docker compose up -d --build
+```
+
+---
+## 5. Переменные окружения
+Минимальный набор (пример `.env`):
+```
+SECRET_KEY=changeme
+DEBUG=true
+ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=http://localhost:8000
+
+POSTGRES_DB=django
+POSTGRES_USER=django
+POSTGRES_PASSWORD=django
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+
+# Кеш / Celery (Redis)
+REDIS_CACHE_URL=redis://redis:6379/1
+CACHE_TIMEOUT=300
+CELERY_BROKER=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# RabbitMQ (если используете)
+RABBITMQ_DEFAULT_USER=guest
+RABBITMQ_DEFAULT_PASS=guest
+
+# Порты
+PORT=8001
+CELERY_FLOWER=5555
+```
+Если используете внешний брокер (RabbitMQ) — обновите `CELERY_BROKER` на `amqp://user:pass@rabbitmq:5672//`.
+
+---
+## 6. Управление зависимостями (uv)
+Команды:
+```bash
+uv sync                 # установить все группы (dev, test, lint, typecheck)
+uv add <pkg>            # добавить зависимость
+uv remove <pkg>         # удалить
+uv pip compile          # обновить lock (если нужно вручную)
+```
+
+---
+## 7. Management-команды
+| Команда | Назначение |
+|---------|------------|
+| `makeapp <name>` | Создать новое приложение в `apps/`, скорректировать `apps.py` |
+| `secret_key` | Сгенерировать новый SECRET_KEY |
+
+Запуск:
+```bash
+python manage.py makeapp blog
+```
+
+---
+## 8. API документация
+Доступно после запуска:
+- Swagger UI: `/api/schema/swagger-ui/`
+- Redoc: `/api/schema/redoc/`
+- OpenAPI JSON: `/api/schema/`
+
+Конфигурация — `core/config/swagger.py` (при необходимости расширьте).
+
+---
+## 9. Аутентификация (SimpleJWT)
+Настройки в `core/config/jwt.py`.
+- Access token: 1 день
+- Refresh token: 7 дней
+- Заголовок: `Authorization: Bearer <token>`
+
+Пример получения токена (если настроен эндпоинт):
+```
+POST /api/auth/token/  {"username": "...", "password": "..."}
+```
+
+---
+## 10. Многоязычность
+- Языки: en, uz, ru
+- Переводы: `assets/locale/<lang>/LC_MESSAGES/django.po`
+- Modeltranslation: `MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en")`
+- Базовый язык: `uz`
+
+Генерация / компиляция сообщений:
+```bash
+python manage.py makemessages -l ru -l uz -l en
+python manage.py compilemessages
+```
+Rosetta позволяет редактировать переводы через UI.
+
+---
+## 11. Админ-панель (Unfold)
+Расширенный современный UI. Навигация и дополнительные настройки — см. файл `core/config/unfold_navigation.py`. Добавляйте приложения в списки INSTALLED_APPS (через `PROJECT_APPS`).
+
+---
+## 12. Редактор (CKEditor 5)
+Используйте `CKEditor5Field` для текстовых полей:
+```python
+from django_ckeditor_5.fields import CKEditor5Field
+body = CKEditor5Field(config_name="default")
+```
+Настройку профилей можно вынести в `core/config/ckeditor5.py`.
+
+---
+## 13. Кеш и Redis
+Конфигурация в `core/config/cache.py`. Пример ручного использования:
+```python
+from django.core.cache import cache
+cache.set("key", "value", 60)
+value = cache.get("key")
+```
+Сессии работают через кеш (`SESSION_ENGINE`).
+
+---
+## 14. Фоновая обработка задач (Celery)
+Пример задачи:
+```python
+# apps/shared/tasks.py
+from celery import shared_task
+
+@shared_task
+def add(x, y):
+    return x + y
+```
+Запуск локально:
+```bash
+celery -A core worker -l info
+celery -A core beat -l info
+```
+Flower (мониторинг):
+```bash
+celery -A core flower --port=5555
+```
+
+---
+## 15. Качество кода (ruff, mypy, deptry, pre-commit)
+Taskfile цели:
+```bash
+task lint      # ruff check
+task format    # автоформат + фиксы
+task typecheck # mypy
+task deptry    # неиспользуемые зависимости
+task all       # полный набор (как CI)
+```
+
+---
+## 16. Тестирование
+Создавайте тесты в `tests/` или внутри приложения (`apps/<app>/tests/`). Запуск:
+```bash
+uv run pytest -vv
+```
+Покрытие (пример):
+```bash
+uv run pytest --cov=apps --cov-report=term-missing
+```
+
+---
+## 17. Логи и мониторинг
+Расширяйте `core/config/logs.py` (если потребуется) для JSON-формата. Рекомендуется интеграция с Sentry / OpenTelemetry в продакшене.
+
+---
+## 18. Docker / Продакшен рекомендации
+- Используйте отдельный том для статики / медиа.
+- Добавьте `collectstatic` и миграции в entrypoint.
+- Настройте reverse proxy (nginx) + HTTPS.
+- Настройте healthcheck endpoints (например, `/healthz`).
+
+---
+## 19. Обновление / Расширение
+Добавление нового приложения:
+```bash
+python manage.py makeapp blog
+```
+Добавьте его в навигацию Unfold при необходимости.
+
+---
+## 20. Donate & Контакты
+Автор: Jahongir Hakimjonov
+- GitHub: https://github.com/JahongirHakimjonov
+- Instagram: https://www.instagram.com/ja_kahn_gir/
+- Telegram: https://t.me/jakhangir_blog
+
+Поддержать:
+- Buy Me Coffee: https://buymeacoffee.com/ja_khan_gir
+- Tirikchilik: https://tirikchilik.uz/ja_khan_gir
+
+<a href="https://pypi.org/project/django-default/"><img src="https://i0.wp.com/securityaffairs.com/wp-content/uploads/2021/08/PyPI.png?ssl=1" width="200" height="90" alt="pypi"></a>
+<a href="https://buymeacoffee.com/ja_khan_gir"><img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="160" height="160" alt="donate"></a>
+
+---
+## Star History
 <a href="https://www.star-history.com/#JahongirHakimjonov/DjangoDefault&Date">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date&theme=dark" />
@@ -213,3 +316,17 @@ pre-commit run --all-files # Check if everything is okay
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date" />
  </picture>
 </a>
+
+---
+## Лицензия
+MIT — см. файл LICENSE.
+
+---
+## TODO Идеи
+- Пример GraphQL (Strawberry / Graphene)
+- Интеграция Sentry
+- GitHub Actions workflow пример
+- Rate limiting / throttling расширенное
+- Доп. RBAC поверх guardian/simple_history
+
+PR приветствуются!
