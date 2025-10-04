@@ -14,16 +14,12 @@ urlpatterns = [
     ),
     path(
         "api/schema/swagger-ui/",
-        login_required(
-            SpectacularSwaggerView.as_view(url_name="schema"), login_url="/admin/"
-        ),
+        login_required(SpectacularSwaggerView.as_view(url_name="schema"), login_url="/admin/"),
         name="swagger-ui",
     ),
     path(
         "api/schema/redoc/",
-        login_required(
-            SpectacularRedocView.as_view(url_name="schema"), login_url="/admin/"
-        ),
+        login_required(SpectacularRedocView.as_view(url_name="schema"), login_url="/admin/"),
         name="redoc",
     ),
 ]

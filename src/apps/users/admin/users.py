@@ -4,9 +4,9 @@ from django.templatetags.static import static
 from unfold.admin import ModelAdmin
 from unfold.contrib.filters.admin import RangeDateFilter
 from unfold.decorators import display
-from unfold.forms import AdminPasswordChangeForm, UserCreationForm, UserChangeForm
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
-from apps.users.models.users import User, RoleChoices
+from apps.users.models.users import RoleChoices, User
 
 
 @admin.register(User)

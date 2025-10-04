@@ -19,7 +19,7 @@ RUN uv venv /app/.venv
 COPY ./pyproject.toml ./uv.lock ./
 RUN uv sync --no-dev --frozen --no-install-project --group docker
 
-FROM python:${PYTHON_VERSION}-slim AS app
+FROM python:${PYTHON_VERSION} AS app
 
 WORKDIR /app
 
@@ -56,9 +56,6 @@ COPY ./pyproject.toml ./uv.lock ./
 COPY src/. /app/
 
 RUN chgrp -R 0 /app && chmod -R g=u /app
-
-# runtime-only deps (keep minimal)
-RUN pip install --no-cache-dir psycopg2-binary
 
 EXPOSE 8000
 

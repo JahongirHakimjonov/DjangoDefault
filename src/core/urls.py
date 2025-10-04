@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import include, path, re_path
 from django.views.static import serve
+
 from apps.shared.views.base import (
+    custom_handler400,
+    custom_handler403,
     custom_handler404,
     custom_handler500,
-    custom_handler403,
-    custom_handler400,
 )
 from core.config.swagger import urlpatterns as swagger_patterns
 

@@ -7,15 +7,10 @@ class Command(BaseCommand):
     help = "Generates a new Django secret key"
 
     def handle(self, *args, **options):
-        print(
-            Fore.LIGHTCYAN_EX
-            + "<======================================================>"
-        )
+        print(Fore.LIGHTCYAN_EX + "<======================================================>")
         print(
             "<=" + Style.RESET_ALL,
             Fore.LIGHTMAGENTA_EX + utils.get_random_secret_key() + Style.RESET_ALL,
             Fore.LIGHTCYAN_EX + "=>",
         )
-        print(
-            "<======================================================>" + Style.RESET_ALL
-        )
+        print("<======================================================>" + Style.RESET_ALL)

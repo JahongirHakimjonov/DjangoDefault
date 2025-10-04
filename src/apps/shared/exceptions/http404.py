@@ -7,11 +7,7 @@ class Http404Exception(APIException):
     default_code = "not_found"
 
     def __init__(self, object_name="Object", filters=None):
-        filters_text = (
-            ", ".join(f"{k}={v}" for k, v in filters.items())
-            if filters
-            else "given filters"
-        )
+        filters_text = ", ".join(f"{k}={v}" for k, v in filters.items()) if filters else "given filters"
         detail = {
             "success": False,
             "message": f"{object_name} with {filters_text} not found",

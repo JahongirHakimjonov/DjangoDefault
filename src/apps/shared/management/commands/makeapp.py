@@ -5,9 +5,7 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = (
-        "Creates a new Django app inside the apps folder and sets the name in apps.py"
-    )
+    help = "Creates a new Django app inside the apps folder and sets the name in apps.py"
 
     def add_arguments(self, parser):
         parser.add_argument("app_name", type=str, help="The name of the app to create")
@@ -26,7 +24,7 @@ class Command(BaseCommand):
         call_command("startapp", app_name, app_directory)
 
         apps_file_path = os.path.join(app_directory, "apps.py")
-        with open(apps_file_path, "r") as file:
+        with open(apps_file_path) as file:
             filedata = file.read()
 
         filedata = filedata.replace(f'name = "{app_name}"', f'name = "apps.{app_name}"')
@@ -52,9 +50,7 @@ class Command(BaseCommand):
 
         for package_name in ["models", "views", "admin", "serializers", "tests"]:
             create_package(os.path.join(app_directory, package_name))
-            with open(
-                os.path.join(app_directory, package_name, "__init__.py"), "w"
-            ) as file:
+            with open(os.path.join(app_directory, package_name, "__init__.py"), "w") as file:
                 file.write(init_code.strip())
 
         self.stdout.write(self.style.SUCCESS(f"App {app_name} created successfully!"))
