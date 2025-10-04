@@ -425,6 +425,19 @@ wheels = [
 ]
 
 [[package]]
+name = "django-prometheus"
+version = "2.4.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "prometheus-client" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/98/f4/cb39ddd2a41e07a274c4e162c076e906ae232d63b66bbabdea0300878877/django_prometheus-2.4.1.tar.gz", hash = "sha256:073628243d2a6de6a8a8c20e5b512872dfb85d66e1b60b28bcf1eca0155dad95", size = 24464, upload-time = "2025-06-25T15:45:37.149Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/01/50/9c5e022fa92574e5d20606687f15a2aa255e10512a17d11a8216fa117f72/django_prometheus-2.4.1-py2.py3-none-any.whl", hash = "sha256:7fe5af7f7c9ad9cd8a429fe0f3f1bf651f0e244f77162147869eab7ec09cc5e7", size = 29541, upload-time = "2025-06-25T15:45:35.433Z" },
+]
+
+[[package]]
 name = "django-redis"
 version = "5.4.0"
 source = { registry = "https://pypi.org/simple" }
@@ -518,6 +531,7 @@ dependencies = [
     { name = "django-ckeditor-5" },
     { name = "django-cors-headers" },
     { name = "django-modeltranslation" },
+    { name = "django-prometheus" },
     { name = "django-redis" },
     { name = "django-rosetta" },
     { name = "django-silk" },
@@ -529,10 +543,12 @@ dependencies = [
     { name = "flower" },
     { name = "gunicorn" },
     { name = "pillow" },
+    { name = "prometheus-client" },
     { name = "psycopg2-binary" },
     { name = "pygments" },
     { name = "pyjwt" },
     { name = "python-dotenv" },
+    { name = "sentry-sdk", extra = ["django"] },
     { name = "uvicorn", extra = ["standard"] },
     { name = "yarl" },
 ]
@@ -571,6 +587,7 @@ requires-dist = [
     { name = "django-ckeditor-5", specifier = "==0.2.13" },
     { name = "django-cors-headers", specifier = "==4.3.1" },
     { name = "django-modeltranslation", specifier = "==0.18.11" },
+    { name = "django-prometheus", specifier = ">=2.4.1" },
     { name = "django-redis", specifier = "==5.4.0" },
     { name = "django-rosetta", specifier = "==0.10.0" },
     { name = "django-silk", specifier = "==5.3.1" },
@@ -582,10 +599,12 @@ requires-dist = [
     { name = "flower", specifier = "==2.0.1" },
     { name = "gunicorn", specifier = "==21.2.0" },
     { name = "pillow", specifier = "==10.2.0" },
+    { name = "prometheus-client", specifier = ">=0.22.0" },
     { name = "psycopg2-binary", specifier = "==2.9.9" },
     { name = "pygments", specifier = "==2.19.1" },
     { name = "pyjwt", specifier = "~=2.8.0" },
     { name = "python-dotenv", specifier = "==1.0.1" },
+    { name = "sentry-sdk", extras = ["django"], specifier = ">=2.39.0" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.37.0" },
     { name = "yarl", specifier = "==1.20.0" },
 ]
@@ -1510,6 +1529,24 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/28/d3/bb25ee567ce2f61ac52430cf99f446b0e6d49bdfa4188699ad005fdd16aa/ruff-0.13.3-py3-none-win32.whl", hash = "sha256:f14e0d1fe6460f07814d03c6e32e815bff411505178a1f539a38f6097d3e8ee3", size = 12334488, upload-time = "2025-10-02T19:29:24.782Z" },
     { url = "https://files.pythonhosted.org/packages/cf/49/12f5955818a1139eed288753479ba9d996f6ea0b101784bb1fe6977ec128/ruff-0.13.3-py3-none-win_amd64.whl", hash = "sha256:621e2e5812b691d4f244638d693e640f188bacbb9bc793ddd46837cea0503dd2", size = 13455262, upload-time = "2025-10-02T19:29:26.882Z" },
     { url = "https://files.pythonhosted.org/packages/fe/72/7b83242b26627a00e3af70d0394d68f8f02750d642567af12983031777fc/ruff-0.13.3-py3-none-win_arm64.whl", hash = "sha256:9e9e9d699841eaf4c2c798fa783df2fabc680b72059a02ca0ed81c460bc58330", size = 12538484, upload-time = "2025-10-02T19:29:28.951Z" },
+]
+
+[[package]]
+name = "sentry-sdk"
+version = "2.39.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4c/72/43294fa4bdd75c51610b5104a3ff834459ba653abb415150aa7826a249dd/sentry_sdk-2.39.0.tar.gz", hash = "sha256:8c185854d111f47f329ab6bc35993f28f7a6b7114db64aa426b326998cfa14e9", size = 348556, upload-time = "2025-09-25T09:15:39.064Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/dd/44/4356cc64246ba7b2b920f7c97a85c3c52748e213e250b512ee8152eb559d/sentry_sdk-2.39.0-py2.py3-none-any.whl", hash = "sha256:ba655ca5e57b41569b18e2a5552cb3375209760a5d332cdd87c6c3f28f729602", size = 370851, upload-time = "2025-09-25T09:15:36.35Z" },
+]
+
+[package.optional-dependencies]
+django = [
+    { name = "django" },
 ]
 
 [[package]]

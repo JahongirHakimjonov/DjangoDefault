@@ -28,6 +28,8 @@
 - [pre-commit](https://pre-commit.com/) – git хуки
 - [docker](https://www.docker.com/) – контейнеризация
 - [task](https://taskfile.dev/) – автоматизация задач
+- [sentry](https://sentry.io/) - мониторинг ошибок
+- [prometheus](https://prometheus.io/) - мониторинг метрик
 
 ---
 
@@ -53,6 +55,7 @@
 18. Docker / Продакшен рекомендации
 19. Обновление / Расширение
 20. Donate & Контакты
+21. Sentry & Prometheus (в разработке)
 
 ---
 
