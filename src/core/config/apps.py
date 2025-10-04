@@ -12,6 +12,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
+    "django_prometheus",
 ]
 
 DEFAULT_APPS = [
