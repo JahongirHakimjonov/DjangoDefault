@@ -6,76 +6,87 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Django Default</title>
+        <title>Django - The Web Framework for Perfectionists</title>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description"
-              content="Explore more features and documentation of Django Default, the project structure generator for Django.">
-        <meta name="keywords" content="Django Default, Django documentation, Django features, Django project setup">
-        <meta name="author" content="Jahongir Hakimjonov">
-        <meta name="robots" content="index, follow">
-
-        <!-- Favicon -->
         <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="Django Default Features">
-        <meta property="og:description" content="Learn more about the features of Django Default.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://pypi.org/project/django-default/">
-        <meta property="og:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
-
-        <!-- Twitter Card Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Django Default Features">
-        <meta name="twitter:description"
-              content="Dive into the features of Django Default and explore its possibilities.">
-        <meta name="twitter:image" content="https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png">
-
-        <!-- Canonical Link -->
-        <link rel="canonical" href="https://pypi.org/project/django-default/">
     </head>
     <body>
-    <!-- Particles.js Background -->
-    <div id="particles-js"></div>
+    <div class="background">
+        <div class="grid-overlay"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div id="particles"></div>
+    </div>
 
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo">
-                Django Default<span class="version"></span>
-            </div>
-            <!-- Menu Toggle Button for Mobile -->
-            <button class="menu-toggle" aria-label="Toggle Navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">DJANGO</div>
             <ul class="nav-links">
                 <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 <li><a href="{% url 'swagger-ui' %}">Swagger</a></li>
                 <li><a href="{% url 'redoc' %}">Redoc</a></li>
                 <li><a href="rosetta/">Rosetta</a></li>
             </ul>
-        </nav>
-    </header>
-
-    <main class="main-content">
-        <h1>The Powerful <span class="highlight">Django Framework</span></h1>
-        <p>
-            Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
-            It
-            takes care of much of the hassle of web development, allowing you to focus on writing your app instead of
-            reinventing the wheel. With Django, you can build secure, scalable, and maintainable web applications
-            quickly
-            and efficiently.
-        </p>
-        <div class="buttons">
-            <a href="{% url 'admin:index' %}" class="btn btn-primary">Sign In</a>
         </div>
-    </main>
+    </nav>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <br>
+            <br>
+            <br>
+            <div class="hero-badge">THE WEB FRAMEWORK FOR PERFECTIONISTS</div>
+            <h1>
+                Build <span class="gradient-text">Powerful</span><br>
+                Web Applications
+            </h1>
+            <p class="hero-description">
+                Django makes it easier to build better web apps more quickly and with less code.
+                A high-level Python framework that encourages rapid development and clean, pragmatic design.
+            </p>
+            <div class="cta-buttons">
+                <a href="{% url 'admin:index' %}" class="btn btn-primary">Get Started</a>
+                <a href="https://github.com/JahongirHakimjonov/DjangoDefault" class="btn btn-secondary">View
+                    Documentation</a>
+            </div>
 
+            <div class="glass-card">
+                <div class="code-showcase">
+                    <div class="code-line"><span class="keyword">from</span> django.http <span
+                            class="keyword">import</span>
+                        HttpResponse
+                    </div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="keyword">def</span> <span class="function">hello_world</span>(request):
+                    </div>
+                    <div class="code-line"><span class="keyword">return</span> HttpResponse(<span class="string">"Hello, World!"</span>)
+                    </div>
+                    <div class="code-line"></div>
+                    <div class="code-line"><span class="keyword"># Simple, elegant, powerful</span></div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Blazing Fast</div>
+                        <div class="feature-desc">Optimized for performance and scalability</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Secure by Default</div>
+                        <div class="feature-desc">Built-in protection against common vulnerabilities</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Fully Featured</div>
+                        <div class="feature-desc">Everything you need out of the box</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
     <footer class="footer">
         <div class="social-links">
             <a href="https://t.me/ja_khan_gir" target="_blank" class="social-icon">
@@ -93,18 +104,7 @@
         </div>
         <p>© 2024 Django Default. All rights reserved.</p>
     </footer>
-
-    <script>
-        // JavaScript to toggle mobile navigation menu
-        document.querySelector('.menu-toggle').addEventListener('click', function () {
-            document.querySelector('.nav-links').classList.toggle('show');
-            this.classList.toggle('active');
-        });
-    </script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-
     </body>
     </html>
 {% endblock %}

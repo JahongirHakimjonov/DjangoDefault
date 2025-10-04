@@ -1,0 +1,78 @@
+version: "3"
+
+vars:
+  RUNNER:
+    sh: 'echo {{ .RUNNER | default "uv run" }}'
+  SOURCES: src
+  SOURCES_ROOT: src
+
+tasks:
+  default:
+    cmd:
+      task: all
+
+  init:
+    desc: Initialize local environment
+    env:
+      ENV: local
+    cmds:
+      - "uv sync"
+
+  black:
+    desc: Format python source files with black
+    cmd: "{{.RUNNER}} black {{ .SOURCES }}"
+
+  lint:
+    desc: Lint python source files
+    cmds:
+      - "{{.RUNNER}} ruff check {{.SOURCES}}"
+      - "{{.RUNNER}} ruff format --check --diff {{.SOURCES}}"
+
+  format:
+    desc: Format python source files
+    aliases: [ "fmt" ]
+    cmds:
+      - "{{.RUNNER}} ruff format {{ .SOURCES }}"
+      - "{{.RUNNER}} ruff check --fix {{.SOURCES}}"
+
+  deptry:
+    desc: Check used dependencies with deptry
+    cmd: "{{.RUNNER}} deptry {{.SOURCES_ROOT}}"
+
+  typecheck:
+    desc: Perform type-checking
+    cmd: "{{.RUNNER}} mypy {{.SOURCES_ROOT}}"
+
+  test:
+    env:
+      ENV: test
+    desc: Run tests
+    cmds:
+      - "docker compose up -d --wait postgres-test"
+      - "ENV=test {{.RUNNER}} pytest -vv"
+
+  test-ci:
+    env:
+      ENV: ci
+    desc: Run tests
+    cmd: "{{.RUNNER}} pytest"
+
+  testcov:
+    desc: Run tests and generate a coverage report
+    cmds:
+      - task: test
+      - "{{.RUNNER}} coverage report -m"
+      - "{{.RUNNER}} coverage xml"
+
+  pre-commit:
+    desc: Run pre-commit
+    cmd: uvx pre-commit run
+
+  all:
+    desc: Run the standard set of checks performed in CI
+    cmds:
+      - task: format
+      - task: deptry
+      - task: typecheck
+      - task: testcov
+      - task: pre-commit

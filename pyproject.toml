@@ -1,0 +1,111 @@
+[project]
+name = "DjangoDefault"
+version = "0.0.6"
+description = "A Django project with default settings and commonly used packages."
+authors = [{ name = "Jahongir Hakimjonov", email = "jahongirhakimjonov@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "Django==5.2.7",
+    "django-unfold==0.67.0",
+    "django-ckeditor-5==0.2.13",
+    "django-cors-headers==4.3.1",
+    "django-modeltranslation==0.18.11",
+    "django-redis==5.4.0",
+    "django-rosetta==0.10.0",
+    "django-silk==5.3.1",
+    "djangorestframework==3.15.1",
+    "djangorestframework-simplejwt==5.3.1",
+    "drf-spectacular==0.27.1",
+    "drf-spectacular-sidecar==2024.3.4",
+    "celery==5.4.0",
+    "colorama==0.4.6",
+    "colorlog==6.9.0",
+    "flower==2.0.1",
+    "gunicorn==21.2.0",
+    "pillow==10.2.0",
+    "psycopg2-binary==2.9.9",
+    "PyJWT~=2.8.0",
+    "Pygments==2.19.1",
+    "python-dotenv==1.0.1",
+    "uvicorn[standard]==0.37.0",
+    "yarl==1.20.0",
+]
+
+[dependency-groups]
+dev = [
+    "deptry",
+    "black",
+]
+test = [
+    "pytest",
+    "pytest-django",
+    "pytest-cov",
+    "pytest-mock",
+]
+lint = [
+    "ruff",
+]
+typecheck = [
+    "mypy",
+    "types-PyYAML",
+    "types-requests",
+    "django-stubs",
+]
+docker = [
+    "uvloop==0.21.0",
+    "httptools==0.6.4",
+]
+
+[tool.uv]
+default-groups = ["dev", "test", "lint", "typecheck"]
+package = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+extend-exclude = ["*/migrations"]
+
+[tool.ruff.lint]
+select = [
+    "B",    # flake8-bugbear
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "S",    # bandit
+    "UP",   # pyupgrade
+    "W",    # pycodestyle warnings
+]
+ignore = [
+    "B008", # function-call-in-default-argument
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/*" = ["S101"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+disallow_any_generics = false
+pretty = true
+show_error_codes = true
+implicit_reexport = true
+warn_unused_ignores = false
+warn_return_any = false
+namespace_packages = true
+plugins = ["mypy_django_plugin.main"]
+exclude = ["src/core/settings.py"]
+
+[tool.django-stubs]
+django_settings_module = "core.settings"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+DJANGO_SETTINGS_MODULE = "core.settings"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore:.*unclosed.*:ResourceWarning",
+]
