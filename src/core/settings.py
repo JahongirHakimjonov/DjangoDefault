@@ -26,7 +26,7 @@ def env_list(name: str) -> list[str]:
     return [part.strip() for part in val.split(",") if part.strip()]
 
 
-SECRET_KEY: str = os.getenv("SECRET_KEY", "")
+SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key")
 
 DEBUG: bool = env_bool("DEBUG", False)
 

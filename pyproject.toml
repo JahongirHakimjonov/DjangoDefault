@@ -96,6 +96,7 @@ warn_unused_ignores = false
 warn_return_any = false
 namespace_packages = true
 plugins = ["mypy_django_plugin.main"]
+exclude = ["src/core/settings.py"]
 
 [tool.django-stubs]
 django_settings_module = "core.settings"
