@@ -2,12 +2,37 @@
 
 ![banner](https://i.postimg.cc/WzS3fs9f/Pics-Art-24-07-08-01-10-45-321.png "banner")
 
-> Opinionated стартовый шаблон Django 5.2 с современным стеком: DRF + SimpleJWT, Unfold admin, многоязычие (modeltranslation), CKEditor 5, Redis cache, Celery, Swagger / Redoc (drf-spectacular), PostgreSQL, Docker, Taskfile, ruff, mypy, pytest.
+> Opinionated стартовый шаблон Django 5.2 с современным стеком: DRF + SimpleJWT, Unfold admin, многоязычие (
+> modeltranslation), CKEditor 5, Redis cache, Celery, Swagger / Redoc (drf-spectacular), PostgreSQL, Docker, Taskfile,
+> ruff, mypy, pytest.
 >
-> English summary: Ready-to-use Django 5.2 boilerplate with REST, JWT auth, multilingual setup, async tasks, rich admin & tooling.
+> English summary: Ready-to-use Django 5.2 boilerplate with REST, JWT auth, multilingual setup, async tasks, rich
+> admin & tooling.
+
+### Требования
+
+- Установить [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- Установить [Docker](https://docs.docker.com/get-docker/)
+- Установить [Task](https://taskfile.dev/installation/) или использовать команду `uvx --from go-task-bin task`
+
+Готовый стек / инструменты, которые могут использоваться в микросервисном backend окружении:
+
+- [Django](https://www.djangoproject.com/) – веб-фреймворк
+- [uvicorn](https://www.uvicorn.org/) – ASGI сервер
+- [gunicorn](https://gunicorn.org/) – WSGI сервер
+- [PostgreSQL](https://www.postgresql.org/) – реляционная база данных
+- [uv](https://docs.astral.sh/uv/) – инструмент для управления зависимостями и запусков
+- [pytest](https://docs.pytest.org/en/7.4.x/) – тестирование
+- [ruff](https://beta.ruff.rs/docs/) – линтер и автоформатер
+- [mypy](https://mypy-lang.org/) – статическая типизация
+- [pre-commit](https://pre-commit.com/) – git хуки
+- [docker](https://www.docker.com/) – контейнеризация
+- [task](https://taskfile.dev/) – автоматизация задач
 
 ---
+
 ## Содержание
+
 1. Функционал
 2. Архитектура и структура каталогов
 3. Стек технологий
@@ -30,7 +55,9 @@
 20. Donate & Контакты
 
 ---
+
 ## 1. Функционал
+
 - Шаблон с разделением на `core` и прикладные приложения в `apps/`.
 - Кастомная модель пользователя `users.User`.
 - DRF c JWT-аутентификацией (SimpleJWT) и схемами OpenAPI (drf-spectacular + sidecar UI).
@@ -46,7 +73,9 @@
 - Подготовлено для CI (форматирование, типы, тесты, покрытие).
 
 ---
+
 ## 2. Архитектура / Структура
+
 ```
 src/
   core/                # Django settings, celery init, конфиги (jwt, cache, swagger ...)
@@ -63,7 +92,9 @@ pyproject.toml         # Зависимости и конфигурации ин
 ```
 
 ---
+
 ## 3. Стек технологий
+
 - Django 5.2
 - DRF, SimpleJWT
 - drf-spectacular (+ sidecar swagger/redoc UI)
@@ -79,8 +110,11 @@ pyproject.toml         # Зависимости и конфигурации ин
 - Taskfile (кросс-платформенная автоматизация)
 
 ---
+
 ## 4. Быстрый старт
+
 ### 4.1 Вариант A: Локально (uv)
+
 ```bash
 # Установите uv (если нет)
 pip install uv
@@ -100,6 +134,7 @@ uv run python src/manage.py runserver 0.0.0.0:8000
 ```
 
 ### 4.2 Вариант B: Docker
+
 ```bash
 # Запуск только веб + postgres
 docker compose up -d --build
@@ -115,14 +150,20 @@ docker compose exec web python manage.py createadmin
 ```
 
 ### 4.3 Включение фоновых сервисов (Celery / Redis / RabbitMQ / Flower)
-В `docker-compose.yml` раскомментируйте нужные блоки: `redis`, `rabbitmq`, `celery_worker`, `celery_beat`, `celery_flower`. Затем:
+
+В `docker-compose.yml` раскомментируйте нужные блоки: `redis`, `rabbitmq`, `celery_worker`, `celery_beat`,
+`celery_flower`. Затем:
+
 ```bash
 docker compose up -d --build
 ```
 
 ---
+
 ## 5. Переменные окружения
+
 Минимальный набор (пример `.env`):
+
 ```
 SECRET_KEY=changeme
 DEBUG=true
@@ -149,11 +190,15 @@ RABBITMQ_DEFAULT_PASS=guest
 PORT=8001
 CELERY_FLOWER=5555
 ```
+
 Если используете внешний брокер (RabbitMQ) — обновите `CELERY_BROKER` на `amqp://user:pass@rabbitmq:5672//`.
 
 ---
+
 ## 6. Управление зависимостями (uv)
+
 Команды:
+
 ```bash
 uv sync                 # установить все группы (dev, test, lint, typecheck)
 uv add <pkg>            # добавить зависимость
@@ -162,20 +207,26 @@ uv pip compile          # обновить lock (если нужно вручн�
 ```
 
 ---
+
 ## 7. Management-команды
-| Команда | Назначение |
-|---------|------------|
+
+| Команда          | Назначение                                                    |
+|------------------|---------------------------------------------------------------|
 | `makeapp <name>` | Создать новое приложение в `apps/`, скорректировать `apps.py` |
-| `secret_key` | Сгенерировать новый SECRET_KEY |
+| `secret_key`     | Сгенерировать новый SECRET_KEY                                |
 
 Запуск:
+
 ```bash
 python manage.py makeapp blog
 ```
 
 ---
+
 ## 8. API документация
+
 Доступно после запуска:
+
 - Swagger UI: `/api/schema/swagger-ui/`
 - Redoc: `/api/schema/redoc/`
 - OpenAPI JSON: `/api/schema/`
@@ -183,78 +234,110 @@ python manage.py makeapp blog
 Конфигурация — `core/config/swagger.py` (при необходимости расширьте).
 
 ---
+
 ## 9. Аутентификация (SimpleJWT)
+
 Настройки в `core/config/jwt.py`.
+
 - Access token: 1 день
 - Refresh token: 7 дней
 - Заголовок: `Authorization: Bearer <token>`
 
 Пример получения токена (если настроен эндпоинт):
+
 ```
 POST /api/auth/token/  {"username": "...", "password": "..."}
 ```
 
 ---
+
 ## 10. Многоязычность
+
 - Языки: en, uz, ru
 - Переводы: `assets/locale/<lang>/LC_MESSAGES/django.po`
 - Modeltranslation: `MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en")`
 - Базовый язык: `uz`
 
 Генерация / компиляция сообщений:
+
 ```bash
 python manage.py makemessages -l ru -l uz -l en
 python manage.py compilemessages
 ```
+
 Rosetta позволяет редактировать переводы через UI.
 
 ---
+
 ## 11. Админ-панель (Unfold)
-Расширенный современный UI. Навигация и дополнительные настройки — см. файл `core/config/unfold_navigation.py`. Добавляйте приложения в списки INSTALLED_APPS (через `PROJECT_APPS`).
+
+Расширенный современный UI. Навигация и дополнительные настройки — см. файл `core/config/unfold_navigation.py`.
+Добавляйте приложения в списки INSTALLED_APPS (через `PROJECT_APPS`).
 
 ---
+
 ## 12. Редактор (CKEditor 5)
+
 Используйте `CKEditor5Field` для текстовых полей:
+
 ```python
 from django_ckeditor_5.fields import CKEditor5Field
+
 body = CKEditor5Field(config_name="default")
 ```
+
 Настройку профилей можно вынести в `core/config/ckeditor5.py`.
 
 ---
+
 ## 13. Кеш и Redis
+
 Конфигурация в `core/config/cache.py`. Пример ручного использования:
+
 ```python
 from django.core.cache import cache
+
 cache.set("key", "value", 60)
 value = cache.get("key")
 ```
+
 Сессии работают через кеш (`SESSION_ENGINE`).
 
 ---
+
 ## 14. Фоновая обработка задач (Celery)
+
 Пример задачи:
+
 ```python
 # apps/shared/tasks.py
 from celery import shared_task
+
 
 @shared_task
 def add(x, y):
     return x + y
 ```
+
 Запуск локально:
+
 ```bash
 celery -A core worker -l info
 celery -A core beat -l info
 ```
+
 Flower (мониторинг):
+
 ```bash
 celery -A core flower --port=5555
 ```
 
 ---
+
 ## 15. Качество кода (ruff, mypy, deptry, pre-commit)
+
 Taskfile цели:
+
 ```bash
 task lint      # ruff check
 task format    # автоформат + фиксы
@@ -264,43 +347,61 @@ task all       # полный набор (как CI)
 ```
 
 ---
+
 ## 16. Тестирование
+
 Создавайте тесты в `tests/` или внутри приложения (`apps/<app>/tests/`). Запуск:
+
 ```bash
 uv run pytest -vv
 ```
+
 Покрытие (пример):
+
 ```bash
 uv run pytest --cov=apps --cov-report=term-missing
 ```
 
 ---
+
 ## 17. Логи и мониторинг
-Расширяйте `core/config/logs.py` (если потребуется) для JSON-формата. Рекомендуется интеграция с Sentry / OpenTelemetry в продакшене.
+
+Расширяйте `core/config/logs.py` (если потребуется) для JSON-формата. Рекомендуется интеграция с Sentry / OpenTelemetry
+в продакшене.
 
 ---
+
 ## 18. Docker / Продакшен рекомендации
+
 - Используйте отдельный том для статики / медиа.
 - Добавьте `collectstatic` и миграции в entrypoint.
 - Настройте reverse proxy (nginx) + HTTPS.
 - Настройте healthcheck endpoints (например, `/healthz`).
 
 ---
+
 ## 19. Обновление / Расширение
+
 Добавление нового приложения:
+
 ```bash
 python manage.py makeapp blog
 ```
+
 Добавьте его в навигацию Unfold при необходимости.
 
 ---
+
 ## 20. Donate & Контакты
+
 Автор: Jahongir Hakimjonov
+
 - GitHub: https://github.com/JahongirHakimjonov
 - Instagram: https://www.instagram.com/ja_kahn_gir/
 - Telegram: https://t.me/jakhangir_blog
 
 Поддержать:
+
 - Buy Me Coffee: https://buymeacoffee.com/ja_khan_gir
 - Tirikchilik: https://tirikchilik.uz/ja_khan_gir
 
@@ -308,7 +409,9 @@ python manage.py makeapp blog
 <a href="https://buymeacoffee.com/ja_khan_gir"><img src="https://i.postimg.cc/cLwdq9pL/bmc-qr-2.png" width="160" height="160" alt="donate"></a>
 
 ---
+
 ## Star History
+
 <a href="https://www.star-history.com/#JahongirHakimjonov/DjangoDefault&Date">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JahongirHakimjonov/DjangoDefault&type=Date&theme=dark" />
@@ -318,11 +421,15 @@ python manage.py makeapp blog
 </a>
 
 ---
+
 ## Лицензия
+
 MIT — см. файл LICENSE.
 
 ---
+
 ## TODO Идеи
+
 - Пример GraphQL (Strawberry / Graphene)
 - Интеграция Sentry
 - GitHub Actions workflow пример
