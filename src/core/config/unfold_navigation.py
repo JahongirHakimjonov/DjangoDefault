@@ -1,15 +1,21 @@
+from typing import TYPE_CHECKING, Any
+
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
+if TYPE_CHECKING:
+    from typing import Protocol
 
-def user_has_group_or_permission(user, permission):
+    class AuthUserLike(Protocol):
+        is_superuser: bool
+        groups: Any
+
+
+def user_has_group_or_permission(user: "AuthUserLike", permission: str) -> bool:
     if user.is_superuser:
         return True
-
-    group_names = user.groups.values_list("name", flat=True)
-    if not group_names:
+    if not user.groups.exists():
         return True
-
     return user.groups.filter(permissions__codename=permission).exists()
 
 

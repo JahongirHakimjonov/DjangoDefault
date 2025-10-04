@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
@@ -7,10 +8,11 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
     help = "Creates a new Django app inside the apps folder and sets the name in apps.py"
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: Any) -> None:
         parser.add_argument("app_name", type=str, help="The name of the app to create")
+        return None
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         app_name = options["app_name"]
         app_directory = os.path.join("apps", app_name)
 
@@ -39,14 +41,13 @@ class Command(BaseCommand):
         with open(urls_file_path, "w") as file:
             file.write("from django.urls import path\n\nurlpatterns = []\n")
 
-        def create_package(package_name):
+        def create_package(package_name: str) -> None:
             os.makedirs(package_name, exist_ok=True)
             with open(os.path.join(package_name, "__init__.py"), "w"):
                 pass
 
         init_code = """
-        import importlib\nimport os\n\ncurrent_dir = os.path.dirname(__file__)\n\nfor filename in os.listdir(current_dir):\n\tif filename.endswith(".py") and filename != "__init__.py":\n\t\tmodule_name = f"{__name__}.{filename[:-3]}"\n\t\timportlib.import_module(module_name)
-        """
+        import importlib\nimport os\n\ncurrent_dir = os.path.dirname(__file__)\n\nfor filename in os.listdir(current_dir):\n\tif filename.endswith(".py") and filename != "__init__.py":\n\t\tmodule_name = f"{__name__}.{filename[:-3]}"\n\t\timportlib.import_module(module_name)"""  # noqa
 
         for package_name in ["models", "views", "admin", "serializers", "tests"]:
             create_package(os.path.join(app_directory, package_name))
@@ -54,3 +55,4 @@ class Command(BaseCommand):
                 file.write(init_code.strip())
 
         self.stdout.write(self.style.SUCCESS(f"App {app_name} created successfully!"))
+        return None

@@ -18,6 +18,10 @@ tasks:
     cmds:
       - "uv sync"
 
+  black:
+    desc: Format python source files with black
+    cmd: "{{.RUNNER}} black {{ .SOURCES }}"
+
   lint:
     desc: Lint python source files
     cmds:
@@ -26,7 +30,7 @@ tasks:
 
   format:
     desc: Format python source files
-    aliases: ["fmt"]
+    aliases: [ "fmt" ]
     cmds:
       - "{{.RUNNER}} ruff format {{ .SOURCES }}"
       - "{{.RUNNER}} ruff check --fix {{.SOURCES}}"

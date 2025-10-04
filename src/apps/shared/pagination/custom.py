@@ -1,12 +1,14 @@
+from typing import Any
+
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 
-class CustomPagination(PageNumberPagination):
+class CustomPagination(PageNumberPagination):  # type:ignore[misc]
     page_size_query_param = "page_size"
     page_size = 5
 
-    def get_paginated_response(self, data):
+    def get_paginated_response(self, data: list[Any] | dict[str, Any]) -> Response:
         paginator = self.page.paginator
         return Response(
             {

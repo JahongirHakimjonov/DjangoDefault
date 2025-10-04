@@ -1,24 +1,37 @@
 import os  # noqa
+from pathlib import Path  # type:ignore
 
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv, find_dotenv
 
 from core.config import *  # noqa
+from core.config.apps import THIRD_PARTY_APPS, DEFAULT_APPS, PROJECT_APPS
 
 load_dotenv(find_dotenv(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = os.getenv("DEBUG")
-if DEBUG is not None:
-    DEBUG = DEBUG.lower() in ["true", "1"]
-else:
-    DEBUG = False
+def env_bool(name: str, default: bool = False) -> bool:
+    val = os.getenv(name)
+    if val is None:
+        return default
+    return val.strip().lower() in {"1", "true", "yes", "on"}
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
+
+def env_list(name: str) -> list[str]:
+    val = os.getenv(name)
+    if not val:
+        return []
+    return [part.strip() for part in val.split(",") if part.strip()]
+
+
+SECRET_KEY: str = os.getenv("SECRET_KEY", "")
+
+DEBUG: bool = env_bool("DEBUG", False)
+
+ALLOWED_HOSTS: list[str] = env_list("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS: list[str] = env_list("CSRF_TRUSTED_ORIGINS")
 
 INSTALLED_APPS = [*THIRD_PARTY_APPS, *DEFAULT_APPS, *PROJECT_APPS]
 

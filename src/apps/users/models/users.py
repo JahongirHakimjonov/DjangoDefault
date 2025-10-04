@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -41,9 +43,10 @@ class User(AbstractUser, AbstractBaseModel):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
-    objects = UserManager()
 
-    def __str__(self):
+    objects: ClassVar[UserManager] = UserManager()
+
+    def __str__(self) -> str:
         return f"{self.first_name} {self.last_name} - {self.email}" if self.email else str(_("User"))
 
     class Meta:
@@ -52,10 +55,10 @@ class User(AbstractUser, AbstractBaseModel):
         ordering = ["-created_at"]
         db_table = "users"
 
-    def tokens(self):
+    def tokens(self) -> dict[str, str | int]:
         refresh = RefreshToken.for_user(self)
         return {
-            "access": str(refresh.access_token),
+            "access": str(refresh.access_token),  # type:ignore
             "refresh": str(refresh),
             "user": self.id,
         }

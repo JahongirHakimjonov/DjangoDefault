@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from collections.abc import Callable
+from typing import Any, ParamSpec, TypeVar
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.templatetags.static import static
@@ -8,9 +13,19 @@ from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationFo
 
 from apps.users.models.users import RoleChoices, User
 
+P = ParamSpec("P")
+R = TypeVar("R")
+
+
+def typed_display(*d_args: Any, **d_kwargs: Any) -> Callable[[Callable[P, R]], Callable[P, R]]:
+    def _outer(func: Callable[P, R]) -> Callable[P, R]:
+        return display(*d_args, **d_kwargs)(func)  # type: ignore[misc]
+
+    return _outer
+
 
 @admin.register(User)
-class UserAdmin(BaseUserAdmin, ModelAdmin):
+class UserAdmin(BaseUserAdmin, ModelAdmin):  # type:ignore[misc]
     change_password_form = AdminPasswordChangeForm
     add_form = UserCreationForm
     form = UserChangeForm
@@ -62,20 +77,20 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
         ),
     )
 
-    @display(
+    @typed_display(
         description="Role",
         ordering="role",
         label={
-            RoleChoices.ADMIN: "success",  # green
-            RoleChoices.MODERATOR: "info",  # orange
-            RoleChoices.USER: "info",  # red
+            RoleChoices.ADMIN: "success",
+            RoleChoices.MODERATOR: "info",
+            RoleChoices.USER: "info",
         },
     )
-    def show_role_customized_color(self, obj):
+    def show_role_customized_color(self, obj: User) -> tuple[str, str]:
         return obj.role, obj.get_role_display()
 
-    @display(header=True)
-    def avatars(self, obj):
+    @typed_display(header=True)
+    def avatars(self, obj: User) -> list[Any]:
         return [
             f"{obj.first_name} {obj.last_name}",
             f"ID:{obj.id} - {obj.email}",

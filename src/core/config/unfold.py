@@ -1,15 +1,15 @@
 from django.conf import settings
+from django.http import HttpRequest
 from django.templatetags.static import static
+from django.utils.functional import Promise
 from django.utils.translation import gettext_lazy as _
 
 from . import unfold_navigation as navigation
 
 
-def environment_callback(request):
-    if settings.DEBUG:
-        return [_("Development"), "primary"]
-
-    return [_("Production"), "primary"]
+def environment_callback(request: HttpRequest) -> list[str | Promise]:
+    label: str | Promise = _("Development") if settings.DEBUG else _("Production")
+    return [label, "primary"]
 
 
 UNFOLD = {

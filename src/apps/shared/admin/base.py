@@ -7,7 +7,7 @@ admin.site.unregister(Group)
 
 
 @admin.register(Group)
-class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):  # type:ignore[misc]
     list_display = ("name",)
     search_fields = ("name",)
     filter_vertical = ("permissions",)

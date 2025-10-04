@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpRequest, JsonResponse
 from django.views.generic import TemplateView
 
 
@@ -6,7 +6,10 @@ class HomeView(TemplateView):
     template_name = "index.html"
 
 
-def custom_handler404(request, exception=None):
+def custom_handler404(
+    request: HttpRequest,
+    exception: Exception | None = None,
+) -> JsonResponse:
     return JsonResponse(
         {
             "success": False,
@@ -16,7 +19,7 @@ def custom_handler404(request, exception=None):
     )
 
 
-def custom_handler500(request):
+def custom_handler500(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
         {
             "success": False,
@@ -26,7 +29,10 @@ def custom_handler500(request):
     )
 
 
-def custom_handler403(request, exception=None):
+def custom_handler403(
+    request: HttpRequest,
+    exception: Exception | None = None,
+) -> JsonResponse:
     return JsonResponse(
         {
             "success": False,
@@ -36,7 +42,10 @@ def custom_handler403(request, exception=None):
     )
 
 
-def custom_handler400(request, exception=None):
+def custom_handler400(
+    request: HttpRequest,
+    exception: Exception | None = None,
+) -> JsonResponse:
     return JsonResponse(
         {
             "success": False,
